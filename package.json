@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bundle": "./node_modules/.bin/browserify app/index.js -t browserify-shim -o app/build/bundle.js",
-    "watch": "./node_modules/.bin/watchify app/index.js -t browserify-shim -o app/build/bundle.js"
+    "bundle": "./node_modules/.bin/browserify app/index.js -o app/build/bundle.js",
+    "watch": "./node_modules/.bin/watchify app/index.js -o app/build/bundle.js"
   },
   "author": "",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "browserify-shim": "3.8.0"
   },
   "browserify": {
-    "transforms": [
+    "transform": [
       "browserify-shim"
     ]
   },
