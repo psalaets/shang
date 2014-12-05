@@ -13,7 +13,9 @@
   "dependencies": {},
   "devDependencies": {
     "browserify": "6.3.4",
-    "browserify-shim": "3.8.0"
+    "browserify-shim": "3.8.0",
+    "gulp": "3.8.10",
+    "vinyl-source-stream": "1.0.0"
   },
   "browserify": {
     "transform": [
