@@ -1,9 +1,10 @@
 var gulp = require('gulp'),
     browserify = require('browserify'),
     watchify = require('watchify'),
-    source = require('vinyl-source-stream');
+    source = require('vinyl-source-stream'),
+    browserSync = require('browser-sync');
 
-gulp.task('watch', function() {
+gulp.task('bundle-node-modules', function() {
   var bundler = browserify({
     // begin options required by watchify
     cache: {},
@@ -28,3 +29,24 @@ gulp.task('watch', function() {
 
   return rebundle();
 });
+
+gulp.task('serve', ['bundle-node-modules'], function() {
+  browserSync({
+    server: {
+      baseDir: './app/'
+    }
+  });
+});
+
+gulp.task('dev', ['bundle-node-modules', 'serve'], function() {
+  gulp.watch([
+    // reload when commonjs bundle changes
+    'app/build/bundle.js',
+    // reload when main html page changes
+    'app/index.html',
+    // reload when templates change
+    'app/templates/**/*'
+  ], {}, browserSync.reload);
+});
+
+gulp.task('default', ['dev']);
