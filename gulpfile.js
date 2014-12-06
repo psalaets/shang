@@ -22,6 +22,10 @@ gulp.task('bundle-node-modules', function() {
 
   function rebundle() {
     return bundler.bundle()
+      .on('error', function(error) {
+        console.log(error.stack);
+        this.emit('end');
+      })
       // convert regular node stream into gulp compatible stream
       .pipe(source('bundle.js'))
       .pipe(gulp.dest('./app/build'));
