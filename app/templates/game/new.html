@@ -5,12 +5,13 @@
 </div>
 <div class="row">
     <div class="col-xs-6">
-
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Player name" ng-model="setup.playerName">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button" ng-click="setup.add()">Add</button>
-            </span>
+            <form ng-submit="setup.add()">
+                <input type="text" class="form-control" placeholder="Player name" ng-model="setup.playerName">
+                <span class="input-group-btn">
+                    <input class="btn btn-default" type="submit" value="Add"></input>
+                </span>
+            </form>
         </div>
 
         <h2>Players</h2>

@@ -22,15 +22,16 @@ app.controller('TitleCtrl', function($location) {
   };
 });
 
-
 app.controller('NewGameCtrl', function() {
   this.playerName = '';
 
   this.players = [];
 
   this.add = function() {
-    this.players.push(this.playerName);
-    this.playerName = '';
+    if (this.playerName) {
+      this.players.push(this.playerName);
+      this.playerName = '';
+    }
   };
 
   this.remove = function(player) {
