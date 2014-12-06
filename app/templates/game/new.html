@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h1>Add players to the game</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Player name" ng-model="setup.playerName">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="setup.add()">Add</button>
+            </span>
+        </div>
+
+        <h2>Players</h2>
+        <div class="well" ng-repeat="player in setup.players" ng-click="setup.remove(player)">
+            {{player}}
+        </div>
+    </div>
+</div>
