@@ -24,6 +24,7 @@ module.exports = function(config) {
 
       // 3rd party test helper code
       'app/bower_components/chai/chai.js',
+      'app/bower_components/angular-mocks/angular-mocks.js',
 
       // our test code
       'test/**/*.js'

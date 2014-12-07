@@ -1,6 +1,7 @@
 ;(function(angular) {
   var app = angular.module('app', [
     'app.controller',
+    'app.model',
     'ngRoute'
   ]);
 
