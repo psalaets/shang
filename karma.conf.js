@@ -20,7 +20,17 @@ module.exports = function(config) {
       'app/bower_components/angular-route/angular-route.js',
 
       // our app code
-      'app/js/**/*.js',
+      'app/js/main.js',
+
+      'app/js/controller/define-module.js',
+      'app/js/controller/new-game-controller.js',
+      'app/js/controller/title-controller.js',
+
+      'app/js/model/define-module.js',
+      'app/js/model/game.js',
+
+      'app/js/service/define-module.js',
+      'app/js/service/current-game-service.js',
 
       // 3rd party test helper code
       'app/bower_components/chai/chai.js',
