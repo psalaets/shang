@@ -4,26 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "bundle": "./node_modules/.bin/browserify app/index.js -o app/build/bundle.js",
-    "watch": "./node_modules/.bin/watchify app/index.js -o app/build/bundle.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "browser-sync": "1.7.2",
-    "browserify": "6.3.4",
-    "browserify-shim": "3.8.0",
-    "gulp": "3.8.10",
-    "vinyl-source-stream": "1.0.0"
-  },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "browserify-shim": {
-    "angular": "global:angular"
+    "gulp": "3.8.10"
   }
 }
