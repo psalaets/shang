@@ -2,6 +2,7 @@
   var app = angular.module('app', [
     'app.controller',
     'app.model',
+    'app.service',
     'ngRoute'
   ]);
 
