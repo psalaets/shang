@@ -1,7 +1,6 @@
 ;(function(angular) {
-  var module = angular.module('app.controller');
-
-  module.controller('NewGameCtrl', NewGameCtrl);
+  angular.module('app.controller')
+    .controller('NewGameCtrl', NewGameCtrl);
 
   function NewGameCtrl() {
     this.playerName = '';
