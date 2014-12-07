@@ -8,7 +8,18 @@ describe('Game', function () {
     Game = _Game_;
   }));
 
-  it('should inject', function () {
-    assert.ok(Game)
+  it('starts with no players', function () {
+    var game = new Game();
+
+    assert.equal(game.getPlayers().length, 0);
+  });
+
+  it('can add players', function () {
+    var game = new Game();
+
+    game.addPlayer('bob');
+    game.addPlayer('amber');
+
+    assert.deepEqual(game.getPlayers(), ['bob', 'amber']);
   });
 });

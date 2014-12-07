@@ -9,6 +9,10 @@
   var p = Game.prototype;
 
   p.addPlayer = function(name) {
-    //
+    this.players.push(name);
+  };
+
+  p.getPlayers = function() {
+    return this.players.slice();
   };
 })(angular);
