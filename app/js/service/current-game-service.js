@@ -9,5 +9,7 @@
   };
 
   angular.module('app.service')
-    .factory('CurrentGame', currentGame);
+    .factory('CurrentGame', function() {
+      return currentGame;
+    });
 })(angular);
