@@ -73,10 +73,13 @@ describe('new game controller', function () {
   });
 
   describe('beginGame()', function () {
-    var CurrentGame;
+    var CurrentGame, NavigationService;
 
-    beforeEach(inject(function(_CurrentGame_) {
+    beforeEach(inject(function(_CurrentGame_, _NavigationService_) {
       CurrentGame = _CurrentGame_;
+      NavigationService = _NavigationService_;
+
+      spyOn(NavigationService, 'goToGame');
     }));
 
     it('sets a new game as current game', function() {
@@ -92,6 +95,14 @@ describe('new game controller', function () {
       assert.deepEqual(currentGame.getPlayers(), ['jill', 'joe', 'jen']);
     });
 
-    it('navigates to game');
+    it('navigates to game', function() {
+      controller.add('jill');
+      controller.add('joe');
+      controller.add('jen');
+
+      controller.beginGame();
+
+      assert.equal(NavigationService.goToGame.calls.count(), 1);
+    });
   });
 });
