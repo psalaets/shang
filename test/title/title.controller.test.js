@@ -4,27 +4,27 @@ describe('title controller', function () {
   var controller, scope;
 
   beforeEach(module('app'));
-  beforeEach(inject(function($controller, $rootScope, _NavigationService_) {
+  beforeEach(inject(function($controller, $rootScope, _navigation_) {
     scope = $rootScope.$new();
     controller = $controller('TitleController as shang', {
       $scope: scope,
-      NavigationService: _NavigationService_
+      navigation: _navigation_
     });
   }));
 
   describe('newGame()', function () {
-    var NavigationService;
+    var navigation;
 
-    beforeEach(inject(function(_NavigationService_) {
-      NavigationService = _NavigationService_;
+    beforeEach(inject(function(_navigation_) {
+      navigation = _navigation_;
 
-      spyOn(NavigationService, 'goToGameSetup');
+      spyOn(navigation, 'goToGameSetup');
     }));
 
     it('navigates to game setup', function() {
       controller.newGame();
 
-      assert.equal(NavigationService.goToGameSetup.calls.count(), 1);
+      assert.equal(navigation.goToGameSetup.calls.count(), 1);
     });
   });
 });

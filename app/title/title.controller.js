@@ -2,9 +2,9 @@
   angular.module('app.title')
     .controller('TitleController', TitleController);
 
-  function TitleController(NavigationService) {
+  function TitleController(navigation) {
     this.newGame = function() {
-      NavigationService.goToGameSetup();
+      navigation.goToGameSetup();
     };
   }
 })(angular);

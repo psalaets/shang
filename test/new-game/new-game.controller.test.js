@@ -4,11 +4,11 @@ describe('new game controller', function () {
   var controller, scope;
 
   beforeEach(module('app'));
-  beforeEach(inject(function($controller, $rootScope, _NavigationService_, _CurrentGame_, _Game_) {
+  beforeEach(inject(function($controller, $rootScope, _navigation_, _CurrentGame_, _Game_) {
     scope = $rootScope.$new();
     controller = $controller('NewGameController as setup', {
       $scope: scope,
-      NavigationService: _NavigationService_,
+      navigation: _navigation_,
       CurrentGame: _CurrentGame_,
       Game: _Game_
     });
@@ -73,13 +73,13 @@ describe('new game controller', function () {
   });
 
   describe('beginGame()', function () {
-    var CurrentGame, NavigationService;
+    var CurrentGame, navigation;
 
-    beforeEach(inject(function(_CurrentGame_, _NavigationService_) {
+    beforeEach(inject(function(_CurrentGame_, _navigation_) {
       CurrentGame = _CurrentGame_;
-      NavigationService = _NavigationService_;
+      navigation = _navigation_;
 
-      spyOn(NavigationService, 'goToGame');
+      spyOn(navigation, 'goToGame');
     }));
 
     it('sets a new game as current game', function() {
@@ -102,7 +102,7 @@ describe('new game controller', function () {
 
       controller.beginGame();
 
-      assert.equal(NavigationService.goToGame.calls.count(), 1);
+      assert.equal(navigation.goToGame.calls.count(), 1);
     });
   });
 });
