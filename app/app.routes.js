@@ -1,13 +1,5 @@
 ;(function(angular) {
-  var app = angular.module('app', [
-    'app.models',
-    'app.services',
-    'app.title',
-    'app.new-game',
-    'ngRoute'
-  ]);
-
-  app.config(function($routeProvider) {
+  angular.module('app').config(function($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'title/title.html',
@@ -20,5 +12,4 @@
         controllerAs: 'setup'
       });
   });
-
 })(angular);

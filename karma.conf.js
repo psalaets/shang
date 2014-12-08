@@ -20,7 +20,8 @@ module.exports = function(config) {
       'app/bower_components/angular-route/angular-route.js',
 
       // our app code
-      'app/main.js',
+      'app/app.module.js',
+      'app/app.routes.js',
 
       'app/models/models.module.js',
       'app/models/game.js',
