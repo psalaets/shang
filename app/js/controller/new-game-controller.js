@@ -2,7 +2,7 @@
   angular.module('app.controller')
     .controller('NewGameCtrl', NewGameCtrl);
 
-  function NewGameCtrl(CurrentGame, Game) {
+  function NewGameCtrl(NavigationService, CurrentGame, Game) {
     this.players = [];
     this.playerName = '';
 
@@ -33,6 +33,7 @@
       this.players.forEach(game.addPlayer, game);
 
       CurrentGame.set(game);
+      NavigationService.goToGame();
     };
   }
 })(angular);

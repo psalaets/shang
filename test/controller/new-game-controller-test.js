@@ -4,10 +4,13 @@ describe('new game controller', function () {
   var controller, scope;
 
   beforeEach(module('app'));
-  beforeEach(inject(function($controller, $rootScope) {
+  beforeEach(inject(function($controller, $rootScope, _NavigationService_, _CurrentGame_, _Game_) {
     scope = $rootScope.$new();
     controller = $controller('NewGameCtrl as setup', {
-      $scope: scope
+      $scope: scope,
+      NavigationService: _NavigationService_,
+      CurrentGame: _CurrentGame_,
+      Game: _Game_
     });
   }));
 
@@ -89,6 +92,6 @@ describe('new game controller', function () {
       assert.deepEqual(currentGame.getPlayers(), ['jill', 'joe', 'jen']);
     });
 
-    it('navigates to in-game route');
+    it('navigates to game');
   });
 });
