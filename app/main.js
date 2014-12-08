@@ -9,12 +9,12 @@
   app.config(function($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'templates/title.html',
+        templateUrl: 'title/title.html',
         controller: 'TitleCtrl',
         controllerAs: 'shang'
       })
       .when('/games/new', {
-        templateUrl: 'templates/game/new.html',
+        templateUrl: 'new-game/new-game.html',
         controller: 'NewGameCtrl',
         controllerAs: 'setup'
       });
