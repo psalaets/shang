@@ -24,17 +24,17 @@ module.exports = function(config) {
       'app/app.routes.js',
 
       'app/models/models.module.js',
-      'app/models/game.js',
+      'app/models/game-model.js',
 
       'app/services/services.module.js',
-      'app/services/current-game-service.js',
-      'app/services/navigation-service.js',
+      'app/services/current-game.service.js',
+      'app/services/navigation.service.js',
 
       'app/new-game/new-game.module.js',
-      'app/new-game/new-game-controller.js',
+      'app/new-game/new-game.controller.js',
 
       'app/title/title.module.js',
-      'app/title/title-controller.js',
+      'app/title/title.controller.js',
 
       // 3rd party test helper code
       'app/bower_components/chai/chai.js',
