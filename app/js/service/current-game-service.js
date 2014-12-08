@@ -1,5 +1,6 @@
 ;(function(angular) {
   var currentGame = {
+    game: null,
     get: function() {
       return this.game;
     },

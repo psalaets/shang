@@ -2,7 +2,7 @@
   angular.module('app.controller')
     .controller('NewGameCtrl', NewGameCtrl);
 
-  function NewGameCtrl() {
+  function NewGameCtrl(CurrentGame, Game) {
     this.playerName = '';
 
     this.players = [];
@@ -19,6 +19,17 @@
       if (index != -1) {
         this.players.splice(index, 1);
       }
+    };
+
+    this.canBeginGame = function() {
+      return this.players.length >= 3;
+    };
+
+    this.beginGame = function() {
+      var game = new Game();
+      this.players.forEach(game.addPlayer, game);
+
+      CurrentGame.set(game);
     };
   }
 })(angular);
