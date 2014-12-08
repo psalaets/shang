@@ -4,12 +4,12 @@ describe('new game controller', function () {
   var controller, scope;
 
   beforeEach(module('app'));
-  beforeEach(inject(function($controller, $rootScope, _navigation_, _CurrentGame_, _Game_) {
+  beforeEach(inject(function($controller, $rootScope, _navigation_, _currentGame_, _Game_) {
     scope = $rootScope.$new();
     controller = $controller('NewGameController as setup', {
       $scope: scope,
       navigation: _navigation_,
-      CurrentGame: _CurrentGame_,
+      currentGame: _currentGame_,
       Game: _Game_
     });
   }));
@@ -73,10 +73,10 @@ describe('new game controller', function () {
   });
 
   describe('beginGame()', function () {
-    var CurrentGame, navigation;
+    var currentGame, navigation;
 
-    beforeEach(inject(function(_CurrentGame_, _navigation_) {
-      CurrentGame = _CurrentGame_;
+    beforeEach(inject(function(_currentGame_, _navigation_) {
+      currentGame = _currentGame_;
       navigation = _navigation_;
 
       spyOn(navigation, 'goToGame');
@@ -89,10 +89,10 @@ describe('new game controller', function () {
 
       controller.beginGame();
 
-      var currentGame = CurrentGame.get();
+      var game = currentGame.get();
 
-      assert.ok(currentGame);
-      assert.deepEqual(currentGame.getPlayers(), ['jill', 'joe', 'jen']);
+      assert.ok(game);
+      assert.deepEqual(game.getPlayers(), ['jill', 'joe', 'jen']);
     });
 
     it('navigates to game', function() {

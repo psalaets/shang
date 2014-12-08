@@ -10,7 +10,7 @@
   };
 
   angular.module('app.services')
-    .factory('CurrentGame', function() {
+    .factory('currentGame', function() {
       return currentGame;
     });
 })(angular);

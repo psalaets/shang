@@ -2,7 +2,7 @@
   angular.module('app.new-game')
     .controller('NewGameController', NewGameController);
 
-  function NewGameController(navigation, CurrentGame, Game) {
+  function NewGameController(navigation, currentGame, Game) {
     this.players = [];
     this.playerName = '';
 
@@ -32,7 +32,7 @@
       var game = new Game();
       this.players.forEach(game.addPlayer, game);
 
-      CurrentGame.set(game);
+      currentGame.set(game);
       navigation.goToGame();
     };
   }
