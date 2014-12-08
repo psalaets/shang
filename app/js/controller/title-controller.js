@@ -2,9 +2,9 @@
   angular.module('app.controller')
     .controller('TitleCtrl', TitleCtrl);
 
-  function TitleCtrl($location) {
+  function TitleCtrl(NavigationService) {
     this.newGame = function() {
-      $location.path('/games/new')
+      NavigationService.goToGameSetup();
     };
   }
 })(angular);
