@@ -9,7 +9,7 @@
     }
   };
 
-  angular.module('app.service')
+  angular.module('app.services')
     .factory('CurrentGame', function() {
       return currentGame;
     });

@@ -1,5 +1,5 @@
 ;(function(angular) {
-  angular.module('app.controller')
+  angular.module('app.new-game')
     .controller('NewGameCtrl', NewGameCtrl);
 
   function NewGameCtrl(NavigationService, CurrentGame, Game) {

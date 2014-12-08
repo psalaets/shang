@@ -1,5 +1,5 @@
 ;(function(angular) {
-  angular.module('app.controller')
+  angular.module('app.title')
     .controller('TitleCtrl', TitleCtrl);
 
   function TitleCtrl(NavigationService) {

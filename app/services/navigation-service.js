@@ -1,5 +1,5 @@
 ;(function(angular) {
-  angular.module('app.service')
+  angular.module('app.services')
     .factory('NavigationService', navService);
 
   function navService($location) {

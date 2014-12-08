@@ -1,8 +1,9 @@
 ;(function(angular) {
   var app = angular.module('app', [
-    'app.controller',
-    'app.model',
-    'app.service',
+    'app.models',
+    'app.services',
+    'app.title',
+    'app.new-game',
     'ngRoute'
   ]);
 

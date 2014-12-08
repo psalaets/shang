@@ -1,5 +1,5 @@
 ;(function(angular) {
-  angular.module('app.model')
+  angular.module('app.models')
     .value('Game', Game);
 
   function Game() {
