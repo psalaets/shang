@@ -3,7 +3,7 @@
     $routeProvider
       .when('/', {
         templateUrl: 'title/title.html',
-        controller: 'TitleCtrl',
+        controller: 'TitleController',
         controllerAs: 'shang'
       })
       .when('/games/new', {

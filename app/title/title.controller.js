@@ -1,8 +1,8 @@
 ;(function(angular) {
   angular.module('app.title')
-    .controller('TitleCtrl', TitleCtrl);
+    .controller('TitleController', TitleController);
 
-  function TitleCtrl(NavigationService) {
+  function TitleController(NavigationService) {
     this.newGame = function() {
       NavigationService.goToGameSetup();
     };

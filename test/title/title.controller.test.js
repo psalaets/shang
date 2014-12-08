@@ -6,7 +6,7 @@ describe('title controller', function () {
   beforeEach(module('app'));
   beforeEach(inject(function($controller, $rootScope, _NavigationService_) {
     scope = $rootScope.$new();
-    controller = $controller('TitleCtrl as shang', {
+    controller = $controller('TitleController as shang', {
       $scope: scope,
       NavigationService: _NavigationService_
     });
