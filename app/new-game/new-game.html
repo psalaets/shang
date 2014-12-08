@@ -18,5 +18,11 @@
         <div class="well" ng-repeat="player in setup.players" ng-click="setup.remove(player)">
             {{player}}
         </div>
+
+        <div ng-if="!setup.canBeginGame()" class="alert alert-danger">
+            <strong>Add More Players</strong>
+            <p>Need at least {{::setup.minimumPlayersToStart}} to begin.</p>
+        </div>
+        <button ng-if="setup.canBeginGame()" ng-click="setup.beginGame()" class="btn btn-success">Begin Game</button>
     </div>
 </div>

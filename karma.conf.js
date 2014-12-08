@@ -33,6 +33,9 @@ module.exports = function(config) {
       'app/new-game/new-game.module.js',
       'app/new-game/new-game.controller.js',
 
+      'app/play-game/play-game.module.js',
+      'app/play-game/play-game.controller.js',
+
       'app/title/title.module.js',
       'app/title/title.controller.js',
 

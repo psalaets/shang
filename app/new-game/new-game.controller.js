@@ -24,8 +24,9 @@
       }
     };
 
+    this.minimumPlayersToStart = 3;
     this.canBeginGame = function() {
-      return this.players.length >= 3;
+      return this.players.length >= this.minimumPlayersToStart;
     };
 
     this.beginGame = function() {

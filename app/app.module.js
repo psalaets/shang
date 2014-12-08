@@ -3,5 +3,6 @@ angular.module('app', [
   'app.services',
   'app.title',
   'app.new-game',
+  'app.play-game',
   'ngRoute'
 ]);
