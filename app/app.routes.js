@@ -8,7 +8,7 @@
       })
       .when('/games/new', {
         templateUrl: 'new-game/new-game.html',
-        controller: 'NewGameCtrl',
+        controller: 'NewGameController',
         controllerAs: 'setup'
       });
   });

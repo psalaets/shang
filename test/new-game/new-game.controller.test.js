@@ -6,7 +6,7 @@ describe('new game controller', function () {
   beforeEach(module('app'));
   beforeEach(inject(function($controller, $rootScope, _NavigationService_, _CurrentGame_, _Game_) {
     scope = $rootScope.$new();
-    controller = $controller('NewGameCtrl as setup', {
+    controller = $controller('NewGameController as setup', {
       $scope: scope,
       NavigationService: _NavigationService_,
       CurrentGame: _CurrentGame_,

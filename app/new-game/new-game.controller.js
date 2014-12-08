@@ -1,8 +1,8 @@
 ;(function(angular) {
   angular.module('app.new-game')
-    .controller('NewGameCtrl', NewGameCtrl);
+    .controller('NewGameController', NewGameController);
 
-  function NewGameCtrl(NavigationService, CurrentGame, Game) {
+  function NewGameController(NavigationService, CurrentGame, Game) {
     this.players = [];
     this.playerName = '';
 
