@@ -24,7 +24,7 @@ module.exports = function(config) {
       'app/app.routes.js',
 
       'app/models/models.module.js',
-      'app/models/game-model.js',
+      'app/models/game.model.js',
 
       'app/services/services.module.js',
       'app/services/current-game.service.js',
