@@ -12,19 +12,34 @@ describe('new game controller', function () {
   }));
 
   describe('add()', function () {
-    it('adds playerName to player list', function () {
-      controller.playerName = 'bob';
-
-      controller.add();
+    it('adds player to player list', function () {
+      controller.add('bob');
 
       assert.deepEqual(controller.players, ['bob']);
+    });
+  });
+
+  describe('addFromPlayerName()', function () {
+    it('adds playerName value to player list', function () {
+      controller.playerName = 'bob';
+
+      controller.addFromPlayerName();
+
+      assert.deepEqual(controller.players, ['bob']);
+    });
+
+    it('reset playerName value to empty string', function () {
+      controller.playerName = 'bob';
+
+      controller.addFromPlayerName();
+
       assert.equal(controller.playerName, '');
     });
 
     it('does not add player if playerName is blank', function () {
       controller.playerName = '';
 
-      controller.add();
+      controller.addFromPlayerName();
 
       assert.deepEqual(controller.players, []);
     });
@@ -32,11 +47,8 @@ describe('new game controller', function () {
 
   describe('remove()', function () {
     it('removes player from list by name', function () {
-      controller.playerName = 'bob';
-      controller.add();
-
-      controller.playerName = 'jill';
-      controller.add();
+      controller.add('bob');
+      controller.add('jill');
 
       controller.remove('bob');
 
@@ -46,16 +58,12 @@ describe('new game controller', function () {
 
   describe('canBeginGame()', function () {
     it('is false until at least three players are in list', function() {
-      controller.playerName = 'bob';
-      controller.add();
-
-      controller.playerName = 'jill';
-      controller.add();
+      controller.add('bob');
+      controller.add('jill');
 
       assert(!controller.canBeginGame());
 
-      controller.playerName = 'jan';
-      controller.add();
+      controller.add('jan');
 
       assert(controller.canBeginGame());
     });
@@ -69,14 +77,9 @@ describe('new game controller', function () {
     }));
 
     it('sets a new game as current game', function() {
-      controller.playerName = 'jill';
-      controller.add();
-
-      controller.playerName = 'joe';
-      controller.add();
-
-      controller.playerName = 'jen';
-      controller.add();
+      controller.add('jill');
+      controller.add('joe');
+      controller.add('jen');
 
       controller.beginGame();
 

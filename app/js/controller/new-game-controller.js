@@ -3,15 +3,18 @@
     .controller('NewGameCtrl', NewGameCtrl);
 
   function NewGameCtrl(CurrentGame, Game) {
+    this.players = [];
     this.playerName = '';
 
-    this.players = [];
-
-    this.add = function() {
+    this.addFromPlayerName = function() {
       if (this.playerName) {
-        this.players.push(this.playerName);
+        this.add(this.playerName);
         this.playerName = '';
       }
+    };
+
+    this.add = function(name) {
+      this.players.push(name);
     };
 
     this.remove = function(player) {
