@@ -34,44 +34,6 @@ describe('RoundScore', function () {
     });
   });
 
-  describe('#togglePerfectDeal()', function () {
-    it('1 call turns on perfect deal flag', function () {
-      var roundScore = new RoundScore('billy');
-
-      roundScore.togglePerfectDeal();
-
-      assert.equal(roundScore.perfectDeal, true);
-    });
-
-    it('2 calls turns off perfect deal flag', function () {
-      var roundScore = new RoundScore('billy');
-
-      roundScore.togglePerfectDeal();
-      roundScore.togglePerfectDeal();
-
-      assert.equal(roundScore.perfectDeal, false);
-    });
-  });
-
-  describe('#toggleShanghai()', function () {
-    it('1 call turns on shanghai flag', function () {
-      var roundScore = new RoundScore('billy');
-
-      roundScore.toggleShanghai();
-
-      assert.equal(roundScore.shanghai, true);
-    });
-
-    it('2 calls turns off shanghai flag', function () {
-      var roundScore = new RoundScore('billy');
-
-      roundScore.toggleShanghai();
-      roundScore.toggleShanghai();
-
-      assert.equal(roundScore.shanghai, false);
-    });
-  });
-
   describe('#actualScore', function () {
     describe('rawScore has never been set', function () {
       it('is 0', function() {
@@ -94,7 +56,7 @@ describe('RoundScore', function () {
         var roundScore = new RoundScore('billy');
 
         roundScore.rawScore = 100;
-        roundScore.togglePerfectDeal();
+        roundScore.perfectDeal = true;
 
         assert.equal(roundScore.actualScore, 95);
       });
@@ -103,7 +65,7 @@ describe('RoundScore', function () {
         var roundScore = new RoundScore('billy');
 
         roundScore.rawScore = 100;
-        roundScore.toggleShanghai();
+        roundScore.shanghai = true;
 
         assert.equal(roundScore.actualScore, 200);
       });
@@ -112,8 +74,8 @@ describe('RoundScore', function () {
         var roundScore = new RoundScore('billy');
 
         roundScore.rawScore = 100;
-        roundScore.toggleShanghai();
-        roundScore.togglePerfectDeal();
+        roundScore.shanghai = true;
+        roundScore.perfectDeal = true;
 
         assert.equal(roundScore.actualScore, 190);
       });
@@ -124,7 +86,7 @@ describe('RoundScore', function () {
         var roundScore = new RoundScore('billy');
 
         roundScore.rawScore = 0;
-        roundScore.toggleShanghai();
+        roundScore.shanghai = true;
 
         assert.equal(roundScore.actualScore, 0);
       });
@@ -133,8 +95,8 @@ describe('RoundScore', function () {
         var roundScore = new RoundScore('billy');
 
         roundScore.rawScore = 0;
-        roundScore.toggleShanghai();
-        roundScore.togglePerfectDeal();
+        roundScore.shanghai = true;
+        roundScore.perfectDeal = true;
 
         assert.equal(roundScore.actualScore, -5);
       });

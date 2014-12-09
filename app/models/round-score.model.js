@@ -10,14 +10,6 @@
 
   var p = RoundScore.prototype;
 
-  p.togglePerfectDeal = function() {
-    this.perfectDeal = !this.perfectDeal;
-  };
-
-  p.toggleShanghai = function() {
-    this.shanghai = !this.shanghai;
-  };
-
   Object.defineProperty(p, 'actualScore', {
     get: function() {
       var actualScore = this.rawScore || 0;
