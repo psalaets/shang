@@ -45,6 +45,7 @@ module.exports = function(config) {
 
       'app/scorecard/scorecard.module.js',
       'app/scorecard/scorecard.directive.js',
+      'app/scorecard/round-row.directive.js',
 
       // 3rd party test helper code
       'app/bower_components/chai/chai.js',
