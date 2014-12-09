@@ -1,6 +1,5 @@
 ;(function(angular) {
-  angular.module('app.models')
-    .value('Game', Game);
+  angular.module('app.models').value('Game', Game);
 
   function Game() {
     this.players = [];

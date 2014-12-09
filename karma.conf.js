@@ -25,6 +25,8 @@ module.exports = function(config) {
 
       'app/models/models.module.js',
       'app/models/game.model.js',
+      'app/models/round.model.js',
+      'app/models/round-score.model.js',
 
       'app/services/services.module.js',
       'app/services/current-game.service.js',
