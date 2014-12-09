@@ -26,7 +26,7 @@
         actualScore -= 5;
       }
 
-      if (this.shanghai) {
+      if (this.shanghai && actualScore > 0) {
         actualScore *= 2;
       }
 

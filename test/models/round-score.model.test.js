@@ -81,7 +81,7 @@ describe('RoundScore', function () {
       });
     });
 
-    describe('rawScore has been set', function () {
+    describe('rawScore is > 0', function () {
       it('is same as raw score', function() {
         var roundScore = new RoundScore('billy');
 
@@ -116,6 +116,27 @@ describe('RoundScore', function () {
         roundScore.togglePerfectDeal();
 
         assert.equal(roundScore.actualScore, 190);
+      });
+    });
+
+    describe('rawScore is 0', function () {
+      it('is same as rawScore, when shanghai is true', function() {
+        var roundScore = new RoundScore('billy');
+
+        roundScore.rawScore = 0;
+        roundScore.toggleShanghai();
+
+        assert.equal(roundScore.actualScore, 0);
+      });
+
+      it('is 5 less than rawScore, when shanghai and perfect deal are true', function() {
+        var roundScore = new RoundScore('billy');
+
+        roundScore.rawScore = 0;
+        roundScore.toggleShanghai();
+        roundScore.togglePerfectDeal();
+
+        assert.equal(roundScore.actualScore, -5);
       });
     });
   });
