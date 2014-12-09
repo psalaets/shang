@@ -28,4 +28,18 @@ describe('Round', function () {
       assert.equal(round.scores[1].player, 'jill');
     });
   });
+
+  describe('#scoreFor()', function () {
+    it('returns score for given player', function() {
+      var round = new Round('first', ['bob', 'jill']);
+
+      assert.equal(round.scoreFor('bob'), round.scores[0]);
+    });
+
+    it('returns null if given player is unknown', function() {
+      var round = new Round('first', ['bob', 'jill']);
+
+      assert.equal(round.scoreFor('joan'), null);
+    });
+  });
 });

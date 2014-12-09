@@ -11,6 +11,14 @@
       });
     }
 
+    var p = Round.prototype;
+
+    p.scoreFor = function(player) {
+      return this.scores.filter(function(score) {
+        return score.player == player;
+      })[0] || null;
+    };
+
     return Round;
   });
 
