@@ -15,6 +15,8 @@
       this.startTime = null;
 
       this.rounds = [];
+
+      this.wildsByPlayer = {};
     }
 
     var p = Game.prototype;
@@ -33,6 +35,21 @@
       }, this);
 
       this.startTime = new Date();
+    };
+
+    p.addWild = function(player) {
+      this.wildsByPlayer[player] = this.wildsByPlayer[player] || 0;
+      this.wildsByPlayer[player] += 1;
+    };
+
+    p.removeWild = function(player) {
+      if (this.wildsByPlayer[player]) {
+        this.wildsByPlayer[player] -= 1;
+      }
+    };
+
+    p.countWilds = function(player) {
+      return this.wildsByPlayer[player] || 0;
     };
 
     return Game;
