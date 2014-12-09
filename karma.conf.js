@@ -41,6 +41,9 @@ module.exports = function(config) {
       'app/title/title.module.js',
       'app/title/title.controller.js',
 
+      'app/scorecard/scorecard.module.js',
+      'app/scorecard/scorecard.directive.js',
+
       // 3rd party test helper code
       'app/bower_components/chai/chai.js',
       'app/bower_components/angular-mocks/angular-mocks.js',

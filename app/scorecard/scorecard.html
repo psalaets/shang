@@ -1,0 +1,20 @@
+<table class="table table-bordered">
+    <tr>
+        <th></th>
+        <th ng-repeat="player in game.players">
+            {{player}}
+        </th>
+    </tr>
+    <tr>
+        <td>Wilds</td>
+        <td ng-repeat="player in game.players">
+            {{game.countWilds(player)}}
+        </td>
+    </tr>
+    <tr ng-repeat="round in game.rounds">
+        <td>{{round.name}}</td>
+        <td ng-repeat="score in round.scores">
+
+        </td>
+    </tr>
+</table>
