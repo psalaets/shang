@@ -91,4 +91,18 @@ describe('Game', function () {
       assert.equal(game.countWilds('bob'), 0);
     });
   });
+
+  describe('#totalScore()', function () {
+    it('returns sum of all round scores for given player', function() {
+      var game = new Game();
+      game.addPlayer('amber');
+
+      game.start();
+      game.rounds[0].scoreFor('amber').score = 10;
+      game.rounds[1].scoreFor('amber').score = 50;
+      game.rounds[2].scoreFor('amber').score = 100;
+
+      assert.equal(game.totalScore('amber'), 160);
+    });
+  });
 });

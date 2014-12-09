@@ -52,6 +52,13 @@
       return this.wildsByPlayer[player] || 0;
     };
 
+    p.totalScore = function(player) {
+      return this.rounds.reduce(function(total, round) {
+        var roundScore = round.scoreFor(player);
+        return total + roundScore.score || 0;
+      }, 0);
+    };
+
     return Game;
   });
 })(angular);
