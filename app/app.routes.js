@@ -6,15 +6,21 @@
         controller: 'TitleController',
         controllerAs: 'shang'
       })
-      .when('/new', {
+      .when('/games/new', {
         templateUrl: 'new-game/new-game.html',
         controller: 'NewGameController',
         controllerAs: 'setup'
       })
-      .when('/play', {
+      .when('/games/:id', {
         templateUrl: 'play-game/play-game.html',
         controller: 'PlayGameController',
-        controllerAs: 'current'
+        controllerAs: 'current',
+        resolve: {
+          currentGame: function($route, persistence) {
+            var gameId = $route.current.params['id'];
+            return persistence.loadGame(gameId);
+          }
+        }
       });
   });
 })(angular);

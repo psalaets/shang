@@ -3,6 +3,6 @@
     .controller('PlayGameController', PlayGameController);
 
   function PlayGameController(currentGame) {
-    this.game = currentGame.get();
+    this.game = currentGame;
   }
 })(angular);

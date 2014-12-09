@@ -18,6 +18,8 @@ module.exports = function(config) {
       // 3rd party app code
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-route/angular-route.js',
+      'app/bower_components/localforage/dist/localforage.js',
+      'app/bower_components/angular-localForage/dist/angular-localForage.js',
 
       // our app code
       'app/app.module.js',
@@ -29,8 +31,8 @@ module.exports = function(config) {
       'app/models/round-score.model.js',
 
       'app/services/services.module.js',
-      'app/services/current-game.service.js',
       'app/services/navigation.service.js',
+      'app/services/persistence.service.js',
 
       'app/new-game/new-game.module.js',
       'app/new-game/new-game.controller.js',

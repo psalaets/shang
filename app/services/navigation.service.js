@@ -5,10 +5,10 @@
   function navService($location) {
     return {
       goToGameSetup: function() {
-        $location.path('/new');
+        $location.path('/games/new');
       },
-      goToGame: function() {
-        $location.path('/play');
+      goToGame: function(id) {
+        $location.path('/games/' + id);
       }
     };
   }

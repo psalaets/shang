@@ -5,5 +5,8 @@ angular.module('app', [
   'app.new-game',
   'app.play-game',
   'app.scorecard',
-  'ngRoute'
+  // routing
+  'ngRoute',
+  // offline storage
+  'LocalForageModule'
 ]);

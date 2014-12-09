@@ -2,7 +2,7 @@
   angular.module('app.new-game')
     .controller('NewGameController', NewGameController);
 
-  function NewGameController(navigation, currentGame, Game) {
+  function NewGameController(persistence, navigation, Game) {
     this.players = [];
     this.playerName = '';
 
@@ -34,8 +34,9 @@
       this.players.forEach(game.addPlayer, game);
 
       game.start();
-      currentGame.set(game);
-      navigation.goToGame();
+      persistence.saveGame(game).then(function(game) {
+        navigation.goToGame(game.id);
+      });
     };
   }
 })(angular);
