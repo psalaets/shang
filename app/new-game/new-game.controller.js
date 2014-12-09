@@ -33,6 +33,7 @@
       var game = new Game();
       this.players.forEach(game.addPlayer, game);
 
+      game.start();
       currentGame.set(game);
       navigation.goToGame();
     };

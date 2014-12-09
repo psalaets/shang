@@ -82,7 +82,7 @@ describe('new game controller', function () {
       spyOn(navigation, 'goToGame');
     }));
 
-    it('sets a new game as current game', function() {
+    it('starts a new game with given players as current game', function() {
       controller.add('jill');
       controller.add('joe');
       controller.add('jen');
@@ -92,6 +92,7 @@ describe('new game controller', function () {
       var game = currentGame.get();
 
       assert.ok(game);
+      assert.ok(game.startTime);
       assert.deepEqual(game.getPlayers(), ['jill', 'joe', 'jen']);
     });
 
