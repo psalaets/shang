@@ -14,13 +14,15 @@ describe('Game', function () {
     assert.equal(game.getPlayers().length, 0);
   });
 
-  it('can add players', function () {
-    var game = new Game();
+  describe('#addPlayer()', function() {
+    it('adds player to player list', function () {
+      var game = new Game();
 
-    game.addPlayer('bob');
-    game.addPlayer('amber');
+      game.addPlayer('bob');
+      game.addPlayer('amber');
 
-    assert.deepEqual(game.getPlayers(), ['bob', 'amber']);
+      assert.deepEqual(game.getPlayers(), ['bob', 'amber']);
+    });
   });
 
   describe('#start()', function() {
