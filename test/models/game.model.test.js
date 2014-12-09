@@ -47,12 +47,16 @@ describe('Game', function () {
       assert.ok(game.startTime instanceof Date);
     });
 
-    it('creates 7 rounds', function () {
+    it('creates rounds with round scores in player order', function () {
       var game = new Game();
+      game.addPlayer('bob');
+      game.addPlayer('amber');
 
       game.start();
 
       assert.equal(game.rounds.length, 7);
+      assert.equal(game.rounds[0].scores[0].player, 'bob');
+      assert.equal(game.rounds[0].scores[1].player, 'amber');
     });
   });
 
