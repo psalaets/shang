@@ -112,6 +112,7 @@ describe('Game', function () {
       var startTimeDate = new Date(startTimeString);
 
       var data = {
+        id: 4,
         players: ['bob', 'joe'],
         rounds: [{
           name: 'Round 1',
@@ -132,6 +133,7 @@ describe('Game', function () {
 
       var game = Game.fromData(data);
 
+      assert.equal(game.id, 4);
       assert.deepEqual(game.getPlayers(), ['bob', 'joe']);
       assert.deepEqual(game.startTime, startTimeDate);
       assert.deepEqual(game.wildsByPlayer, {

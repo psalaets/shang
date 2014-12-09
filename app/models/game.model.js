@@ -26,6 +26,7 @@
         return Round.fromData(roundData);
       });
 
+      game.id = data.id;
       game.players = data.players;
       game.startTime = new Date(data.startTime);
       game.wildsByPlayer = data.wildsByPlayer;
