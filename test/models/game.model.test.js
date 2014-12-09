@@ -36,5 +36,13 @@ describe('Game', function () {
       assert.isNotNull(game.startTime);
       assert.ok(game.startTime instanceof Date);
     });
+
+    it('creates 7 rounds', function () {
+      var game = new Game();
+
+      game.start();
+
+      assert.equal(game.rounds.length, 7);
+    });
   });
 });
