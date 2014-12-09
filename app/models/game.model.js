@@ -19,6 +19,20 @@
       this.wildsByPlayer = {};
     }
 
+    Game.fromData = function(data) {
+      var game = new Game();
+
+      game.rounds = data.rounds.map(function(roundData) {
+        return Round.fromData(roundData);
+      });
+
+      game.players = data.players;
+      game.startTime = new Date(data.startTime);
+      game.wildsByPlayer = data.wildsByPlayer;
+
+      return game;
+    };
+
     var p = Game.prototype;
 
     p.addPlayer = function(name) {

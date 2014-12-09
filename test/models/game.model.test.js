@@ -105,4 +105,40 @@ describe('Game', function () {
       assert.equal(game.totalScore('amber'), 160);
     });
   });
+
+  describe('.fromData()', function () {
+    it('creates game instance from js object', function() {
+      var startTimeString = '2014-12-09T07:20:11Z';
+      var startTimeDate = new Date(startTimeString);
+
+      var data = {
+        players: ['bob', 'joe'],
+        rounds: [{
+          name: 'Round 1',
+          scores: [{
+            player: 'bob',
+            score: 5
+          }, {
+            player: 'joe',
+            score: 0
+          }]
+        }],
+        wildsByPlayer: {
+          bob: 2,
+          joe: 1
+        },
+        startTime: startTimeString
+      };
+
+      var game = Game.fromData(data);
+
+      assert.deepEqual(game.getPlayers(), ['bob', 'joe']);
+      assert.deepEqual(game.startTime, startTimeDate);
+      assert.deepEqual(game.wildsByPlayer, {
+        bob: 2,
+        joe: 1
+      });
+      assert.equal(game.rounds.length, 1);
+    });
+  });
 });

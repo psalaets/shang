@@ -42,4 +42,27 @@ describe('Round', function () {
       assert.equal(round.scoreFor('joan'), null);
     });
   });
+
+  describe('.fromData()', function () {
+    it('creates Round instance from plain js object', function () {
+      var data = {
+        name: 'Round 1',
+        scores: [{
+          player: 'bob',
+          score: 5
+        }, {
+          player: 'jen',
+          score: 0
+        }]
+      };
+
+      var round = Round.fromData(data);
+
+      assert.equal(round.name, 'Round 1');
+      assert.equal(round.scores[0].player, 'bob');
+      assert.equal(round.scores[0].score, 5);
+      assert.equal(round.scores[1].player, 'jen');
+      assert.equal(round.scores[1].score, 0);
+    });
+  });
 });

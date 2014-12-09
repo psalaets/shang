@@ -21,4 +21,18 @@ describe('RoundScore', function () {
       assert.equal(roundScore.score, null);
     });
   });
+
+  describe('.fromData()', function () {
+    it('creates RoundScore instance from js object', function() {
+      var data = {
+        player: 'bob',
+        score: 10
+      };
+
+      var roundScore = RoundScore.fromData(data);
+
+      assert.equal(roundScore.player, 'bob');
+      assert.equal(roundScore.score, 10);
+    });
+  });
 });

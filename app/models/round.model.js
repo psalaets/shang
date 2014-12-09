@@ -11,6 +11,16 @@
       });
     }
 
+    Round.fromData = function(data) {
+      var round = new Round(data.name, []);
+
+      round.scores = data.scores.map(function(scoreData) {
+        return RoundScore.fromData(scoreData);
+      });
+
+      return round;
+    };
+
     var p = Round.prototype;
 
     p.scoreFor = function(player) {

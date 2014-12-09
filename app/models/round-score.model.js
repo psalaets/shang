@@ -5,4 +5,10 @@
     this.player = player;
     this.score = null;
   }
+
+  RoundScore.fromData = function(data) {
+    var roundScore = new RoundScore(data.player);
+    roundScore.score = data.score;
+    return roundScore;
+  };
 })(angular);
