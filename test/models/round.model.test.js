@@ -15,7 +15,7 @@ describe('Round', function () {
       assert.equal(round.name, 'first');
     });
 
-    it('sets active flag to false', function () {
+    it('starts round as inactive', function () {
       var round = new Round('first', []);
 
       assert.equal(round.active, false);
