@@ -94,7 +94,7 @@ describe('RoundScore', function () {
         var roundScore = new RoundScore('billy');
 
         roundScore.rawScore = 100;
-        roundScore.togglePerfectDeal()
+        roundScore.togglePerfectDeal();
 
         assert.equal(roundScore.actualScore, 95);
       });
@@ -103,9 +103,19 @@ describe('RoundScore', function () {
         var roundScore = new RoundScore('billy');
 
         roundScore.rawScore = 100;
-        roundScore.toggleShanghai()
+        roundScore.toggleShanghai();
 
         assert.equal(roundScore.actualScore, 200);
+      });
+
+      it('is 2x of 5 less than raw score when shanghai and perfect deal are true', function() {
+        var roundScore = new RoundScore('billy');
+
+        roundScore.rawScore = 100;
+        roundScore.toggleShanghai();
+        roundScore.togglePerfectDeal();
+
+        assert.equal(roundScore.actualScore, 190);
       });
     });
   });
