@@ -4,6 +4,7 @@
 
   function Game() {
     this.players = [];
+    this.startTime = null;
   }
 
   var p = Game.prototype;
@@ -14,5 +15,9 @@
 
   p.getPlayers = function() {
     return this.players.slice();
+  };
+
+  p.start = function() {
+    this.startTime = new Date();
   };
 })(angular);

@@ -22,4 +22,17 @@ describe('Game', function () {
 
     assert.deepEqual(game.getPlayers(), ['bob', 'amber']);
   });
+
+  describe('#start()', function() {
+    it('sets start time', function() {
+      var game = new Game();
+
+      assert.isNull(game.startTime);
+
+      game.start();
+
+      assert.isNotNull(game.startTime);
+      assert.ok(game.startTime instanceof Date);
+    });
+  });
 });
