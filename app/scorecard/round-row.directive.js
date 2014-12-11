@@ -19,18 +19,6 @@
         $scope.nextRound = function() {
           $scope.$emit('round-finished');
         };
-      },
-      link: function(scope, element) {
-        function highlightActiveRow(activeFlag) {
-          if (activeFlag) {
-            element.addClass('active');
-          } else {
-            element.removeClass('active');
-          }
-        }
-
-        scope.watch('round.active', highlightActiveRow);
-        highlightActiveRow(scope.round.active);
       }
     };
   }

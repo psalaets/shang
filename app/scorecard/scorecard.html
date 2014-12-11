@@ -11,7 +11,7 @@
             {{game.countWilds(player)}}
         </td>
     </tr>
-    <tr round-row ng-repeat="round in game.rounds" round="round"></tr>
+    <tr round-row ng-class="{active: round.active}" ng-repeat="round in game.rounds" round="round"></tr>
     <tr>
         <td>
             <strong>Total</strong>
