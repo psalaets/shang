@@ -13,6 +13,7 @@
 
     Round.fromData = function(data) {
       var round = new Round(data.name, []);
+      round.active = data.active;
 
       round.scores = data.scores.map(function(scoreData) {
         return RoundScore.fromData(scoreData);

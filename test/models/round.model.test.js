@@ -47,6 +47,7 @@ describe('Round', function () {
     it('creates Round instance from plain js object', function () {
       var data = {
         name: 'Round 1',
+        active: true,
         scores: [{
           player: 'bob',
           score: 5
@@ -59,6 +60,7 @@ describe('Round', function () {
       var round = Round.fromData(data);
 
       assert.equal(round.name, 'Round 1');
+      assert.equal(round.active, true);
       assert.equal(round.scores[0].player, 'bob');
       assert.equal(round.scores[0].score, 5);
       assert.equal(round.scores[1].player, 'jen');
