@@ -9,6 +9,9 @@
       },
       goToGame: function(id) {
         $location.path('/games/' + id);
+      },
+      goToTitle: function() {
+        $location.path('/');
       }
     };
   }

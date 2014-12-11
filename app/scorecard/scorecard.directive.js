@@ -8,11 +8,15 @@
       scope: {
         game: '='
       },
-      controller: function($scope, persistence) {
+      controller: function($scope, persistence, navigation) {
         $scope.$on('round-finished', function() {
           $scope.game.nextRound();
           persistence.saveGame($scope.game);
         });
+
+        $scope.gameOver = function() {
+          navigation.goToTitle();
+        };
       }
     };
   }
