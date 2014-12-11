@@ -34,7 +34,7 @@
       this.players.forEach(game.addPlayer, game);
 
       game.start();
-      persistence.saveGame(game).then(function(game) {
+      return persistence.saveGame(game).then(function(game) {
         navigation.goToGame(game.id);
       });
     };

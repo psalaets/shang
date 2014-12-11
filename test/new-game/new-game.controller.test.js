@@ -72,38 +72,72 @@ describe('new game controller', function () {
     });
   });
 
-  // TODO mock persistence for these
   describe('beginGame()', function () {
-    var navigation;
+    var navigation, persistence, $rootScope;
+    var gameId = 10;
 
-    beforeEach(inject(function(_navigation_) {
+    beforeEach(inject(function(_navigation_, _persistence_, $q, _$rootScope_) {
       navigation = _navigation_;
+      persistence = _persistence_;
+      $rootScope = _$rootScope_;
+
+      var savedGame;
+      spyOn(persistence, 'saveGame').and.callFake(function(game) {
+        savedGame = game;
+        game.id = gameId;
+
+        return $q(function(resolve, reject) {
+          resolve(game);
+        });
+      });
+      spyOn(persistence, 'loadGame').and.callFake(function(id) {
+        return $q(function(resolve, reject) {
+          resolve(savedGame);
+        });
+      });
 
       spyOn(navigation, 'goToGame');
     }));
 
-    xit('starts a new game with given players as current game', function() {
+    it('starts a new game with given players as current game', function(done) {
       controller.add('jill');
       controller.add('joe');
       controller.add('jen');
 
-      controller.beginGame();
+      controller.beginGame()
+        .then(loadFakeGame)
+        .then(assertGameState)
+        .finally(done);
 
-      var game; //= currentGame.get();
+      function loadFakeGame() {
+        return persistence.loadGame('doesnt matter');
+      }
 
-      assert.ok(game);
-      assert.ok(game.startTime);
-      assert.deepEqual(game.getPlayers(), ['jill', 'joe', 'jen']);
+      function assertGameState(game) {
+        assert.ok(game.startTime);
+        assert.deepEqual(game.getPlayers(), ['jill', 'joe', 'jen']);
+      }
+
+      // must call this to make $q promise chains go
+      $rootScope.$apply();
     });
 
-    xit('navigates to game', function() {
+    it('navigates to game', function(done) {
       controller.add('jill');
       controller.add('joe');
       controller.add('jen');
 
-      controller.beginGame();
+      controller.beginGame()
+        .then(assertNavigation)
+        .finally(done);
 
-      assert.equal(navigation.goToGame.calls.count(), 1);
+      function assertNavigation() {
+        // this should be jasmine's expect and not chai's
+        expect(navigation.goToGame).toHaveBeenCalledWith(gameId);
+      }
+
+      // must call this to make $q promise chains go
+      $rootScope.$apply();
     });
   });
 });
