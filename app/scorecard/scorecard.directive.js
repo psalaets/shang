@@ -8,9 +8,10 @@
       scope: {
         game: '='
       },
-      controller: function($scope) {
+      controller: function($scope, persistence) {
         $scope.$on('round-finished', function() {
           $scope.game.nextRound();
+          persistence.saveGame($scope.game);
         });
       }
     };
