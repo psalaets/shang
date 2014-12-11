@@ -49,6 +49,7 @@
         return new Round(name, this.players);
       }, this);
 
+      this.rounds[0].active = true;
       this.startTime = new Date();
     };
 
