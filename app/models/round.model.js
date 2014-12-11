@@ -32,7 +32,7 @@
 
     p.allScoresReported = function() {
       return this.scores.every(function(roundScore) {
-        return roundScore.score !== null;
+        return roundScore.scoreReported();
       });
     };
 

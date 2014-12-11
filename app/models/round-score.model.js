@@ -6,6 +6,12 @@
     this.score = null;
   }
 
+  var p = RoundScore.prototype;
+
+  p.scoreReported = function() {
+    return this.score !== null && this.score !== void 0;
+  };
+
   RoundScore.fromData = function(data) {
     var roundScore = new RoundScore(data.player);
     roundScore.score = data.score;

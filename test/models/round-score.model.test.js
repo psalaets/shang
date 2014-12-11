@@ -22,6 +22,38 @@ describe('RoundScore', function () {
     });
   });
 
+  describe('#scoreReported()', function () {
+    it('returns true when score has been set', function() {
+      var roundScore = new RoundScore('billy');
+
+      roundScore.score = 10;
+
+      assert.equal(roundScore.scoreReported(), true);
+    });
+
+    it('returns false when score has never been set', function() {
+      var roundScore = new RoundScore('billy');
+
+      assert.equal(roundScore.scoreReported(), false);
+    });
+
+    it('returns false when score is undefined', function() {
+      var roundScore = new RoundScore('billy');
+
+      roundScore.score = void 0;
+
+      assert.equal(roundScore.scoreReported(), false);
+    });
+
+    it('returns false when score is null', function() {
+      var roundScore = new RoundScore('billy');
+
+      roundScore.score = null;
+
+      assert.equal(roundScore.scoreReported(), false);
+    });
+  });
+
   describe('.fromData()', function () {
     it('creates RoundScore instance from js object', function() {
       var data = {
