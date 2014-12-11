@@ -6,10 +6,12 @@
       restrict: 'E',
       templateUrl: 'scorecard/scorecard.html',
       scope: {
-        game: '=game'
+        game: '='
       },
       controller: function($scope) {
-
+        $scope.$on('round-finished', function() {
+          $scope.game.nextRound();
+        });
       }
     };
   }

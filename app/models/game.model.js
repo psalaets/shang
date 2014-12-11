@@ -75,6 +75,21 @@
       }, 0);
     };
 
+    p.nextRound = function() {
+      var index = indexOfCurrentRouund(this.rounds);
+      this.rounds[index].active = false;
+      this.rounds[index + 1].active = true;
+    };
+
+    function indexOfCurrentRouund(rounds) {
+      for (var i = 0; i < rounds.length; i++) {
+        if (rounds[i].active) {
+          return i;
+        }
+      }
+      return null;
+    }
+
     return Game;
   });
 })(angular);

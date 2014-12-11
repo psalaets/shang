@@ -126,6 +126,22 @@ describe('Game', function () {
     });
   });
 
+  describe('#nextRound()', function () {
+    it('deactivates current round and activates round after it', function() {
+      var game = new Game();
+      game.addPlayer('amber');
+      game.start();
+
+      assert.equal(game.rounds[0].active, true);
+      assert.equal(game.rounds[1].active, false);
+
+      game.nextRound();
+
+      assert.equal(game.rounds[0].active, false);
+      assert.equal(game.rounds[1].active, true);
+    });
+  });
+
   describe('.fromData()', function () {
     it('creates game instance from js object', function() {
       var startTimeString = '2014-12-09T07:20:11Z';

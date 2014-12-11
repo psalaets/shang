@@ -15,6 +15,10 @@
         $scope.readyForNextRound = function() {
           return $scope.round.active && $scope.round.allScoresReported();
         };
+
+        $scope.nextRound = function() {
+          $scope.$emit('round-finished');
+        };
       },
       link: function(scope, element) {
         function highlightActiveRow(activeFlag) {
