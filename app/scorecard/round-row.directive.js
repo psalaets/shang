@@ -11,12 +11,16 @@
       scope: {
         round: '='
       },
+      controllerAs: 'vm',
+      bindToController: true,
       controller: function($scope) {
-        $scope.readyForNextRound = function() {
-          return $scope.round.active && $scope.round.allScoresReported();
+        var vm = this;
+
+        vm.readyForNextRound = function() {
+          return vm.round.active && vm.round.allScoresReported();
         };
 
-        $scope.nextRound = function() {
+        vm.nextRound = function() {
           $scope.$emit('round-finished');
         };
       }

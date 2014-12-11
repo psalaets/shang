@@ -1,12 +1,12 @@
 <td>
-    {{round.name}}
-    <button ng-click="nextRound()" ng-show="readyForNextRound()" class="btn btn-primary btn-sm pull-right">Done</button>
+    {{vm.round.name}}
+    <button ng-click="vm.nextRound()" ng-show="vm.readyForNextRound()" class="btn btn-primary btn-sm pull-right">Done</button>
 </td>
-<td ng-repeat="roundScore in round.scores">
-    <div ng-if="round.active">
+<td ng-repeat="roundScore in vm.round.scores">
+    <div ng-if="vm.round.active">
         <input type="number" ng-model="roundScore.score"/>
     </div>
-    <div ng-if="!round.active">
+    <div ng-if="!vm.round.active">
         {{roundScore.score}}
     </div>
 </td>

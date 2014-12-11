@@ -8,13 +8,17 @@
       scope: {
         game: '='
       },
+      controllerAs: 'vm',
+      bindToController: true,
       controller: function($scope, persistence, navigation) {
+        var vm = this;
+
         $scope.$on('round-finished', function() {
-          $scope.game.nextRound();
-          persistence.saveGame($scope.game);
+          vm.game.nextRound();
+          persistence.saveGame(vm.game);
         });
 
-        $scope.gameOver = function() {
+        vm.gameOver = function() {
           navigation.goToTitle();
         };
       }
