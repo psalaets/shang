@@ -21,6 +21,12 @@ describe('Round', function () {
       assert.equal(round.active, false);
     });
 
+    it('starts round as incomplete', function () {
+      var round = new Round('first', []);
+
+      assert.equal(round.completed, false);
+    });
+
     it('adds one round score per player', function () {
       var round = new Round('first', ['bob', 'jill']);
 
@@ -67,6 +73,7 @@ describe('Round', function () {
       var data = {
         name: 'Round 1',
         active: true,
+        completed: false,
         scores: [{
           player: 'bob',
           score: 5
@@ -80,6 +87,7 @@ describe('Round', function () {
 
       assert.equal(round.name, 'Round 1');
       assert.equal(round.active, true);
+      assert.equal(round.completed, false);
       assert.equal(round.scores[0].player, 'bob');
       assert.equal(round.scores[0].score, 5);
       assert.equal(round.scores[1].player, 'jen');

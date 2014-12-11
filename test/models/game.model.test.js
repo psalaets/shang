@@ -127,17 +127,21 @@ describe('Game', function () {
   });
 
   describe('#nextRound()', function () {
-    it('deactivates current round and activates round after it', function() {
+    it('deactivates and completes current round and activates round after it', function() {
       var game = new Game();
       game.addPlayer('amber');
       game.start();
 
       assert.equal(game.rounds[0].active, true);
+      assert.equal(game.rounds[0].completed, false);
+
       assert.equal(game.rounds[1].active, false);
 
       game.nextRound();
 
       assert.equal(game.rounds[0].active, false);
+      assert.equal(game.rounds[0].completed, true);
+
       assert.equal(game.rounds[1].active, true);
     });
   });

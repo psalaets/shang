@@ -78,6 +78,8 @@
     p.nextRound = function() {
       var index = indexOfCurrentRouund(this.rounds);
       this.rounds[index].active = false;
+      this.rounds[index].completed = true;
+
       this.rounds[index + 1].active = true;
     };
 
