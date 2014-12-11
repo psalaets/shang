@@ -76,7 +76,7 @@
     };
 
     p.nextRound = function() {
-      var index = indexOfCurrentRouund(this.rounds);
+      var index = indexOfCurrentRound(this.rounds);
       this.rounds[index].active = false;
       this.rounds[index].completed = true;
 
@@ -85,7 +85,7 @@
       }
     };
 
-    function indexOfCurrentRouund(rounds) {
+    function indexOfCurrentRound(rounds) {
       for (var i = 0; i < rounds.length; i++) {
         if (rounds[i].active) {
           return i;
