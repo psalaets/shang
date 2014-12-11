@@ -12,7 +12,9 @@
         round: '='
       },
       controller: function($scope) {
-
+        $scope.readyForNextRound = function() {
+          return $scope.round.active && $scope.round.allScoresReported();
+        };
       },
       link: function(scope, element) {
         function highlightActiveRow(activeFlag) {
