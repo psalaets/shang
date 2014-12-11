@@ -80,7 +80,9 @@
       this.rounds[index].active = false;
       this.rounds[index].completed = true;
 
-      this.rounds[index + 1].active = true;
+      if (!this.isDone()) {
+        this.rounds[index + 1].active = true;
+      }
     };
 
     function indexOfCurrentRouund(rounds) {
@@ -91,6 +93,12 @@
       }
       return null;
     }
+
+    p.isDone = function() {
+      return this.rounds.every(function(round) {
+        return round.completed;
+      });
+    };
 
     return Game;
   });

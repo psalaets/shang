@@ -144,6 +144,22 @@ describe('Game', function () {
 
       assert.equal(game.rounds[1].active, true);
     });
+
+    it('game is done when current round was last round', function() {
+      var game = new Game();
+      game.addPlayer('amber');
+      game.start();
+
+      game.nextRound(); // mark round 1 done
+      game.nextRound(); // mark round 2 done
+      game.nextRound(); // mark round 3 done
+      game.nextRound(); // mark round 4 done
+      game.nextRound(); // mark round 5 done
+      game.nextRound(); // mark round 6 done
+      game.nextRound(); // mark (last) round 7 done
+
+      assert.equal(game.isDone(), true);
+    });
   });
 
   describe('.fromData()', function () {
