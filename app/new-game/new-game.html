@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-xs-12">
-        <h1>Add players to the game</h1>
+        <h1>Select players</h1>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-6">
         <div class="input-group">
-            <form ng-submit="setup.addFromPlayerName()">
+            <form ng-submit="setup.selectEnteredPlayer()">
                 <input type="text" class="form-control" placeholder="Player name" ng-model="setup.playerName">
                 <span class="input-group-btn">
                     <input class="btn btn-default" type="submit" value="Add"></input>
@@ -15,13 +15,14 @@
         </div>
 
         <h2>Players</h2>
-        <div class="well well-sm" ng-repeat="player in setup.players" ng-click="setup.remove(player)">
+        <div class="player-name" ng-class="{'bg-primary': setup.isSelected(player)}" ng-repeat="player in setup.availablePlayers" ng-click="setup.toggleSelection(player)">
             {{player}}
+            <span ng-show="setup.isSelected(player)" class="pull-right glyphicon glyphicon-ok"></span>
         </div>
 
         <div ng-if="!setup.canBeginGame()" class="alert alert-danger">
-            <strong>Add More Players</strong>
-            <p>Need at least {{::setup.minimumPlayersToStart}} to begin.</p>
+            <strong>Select More Players</strong>
+            <p>Need at least {{::setup.minimumPlayersToStart}} selected to begin game.</p>
         </div>
         <button ng-if="setup.canBeginGame()" ng-click="setup.beginGame()" class="btn btn-success">Begin Game</button>
     </div>

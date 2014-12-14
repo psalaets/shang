@@ -3,35 +3,49 @@
     .controller('NewGameController', NewGameController);
 
   function NewGameController(persistence, navigation, Game) {
-    this.players = [];
+    this.availablePlayers = [];
+    this.selectedPlayers = [];
     this.playerName = '';
+    this.minimumPlayersToStart = 3;
 
-    this.addFromPlayerName = function() {
+    this.selectPlayer = function(player) {
+      this.selectedPlayers.push(player);
+    };
+
+    this.deselectPlayer = function(player) {
+      var index = this.selectedPlayers.indexOf(player);
+      if (index != -1) {
+        this.selectedPlayers.splice(index, 1);
+      }
+    };
+
+    this.isSelected = function(player) {
+      return this.selectedPlayers.indexOf(player) != -1;
+    };
+
+    this.toggleSelection = function(player) {
+      if (this.isSelected(player)) {
+        this.deselectPlayer(player);
+      } else {
+        this.selectPlayer(player);
+      }
+    };
+
+    this.selectEnteredPlayer = function() {
       if (this.playerName) {
-        this.add(this.playerName);
+        this.availablePlayers.push(this.playerName);
+        this.selectPlayer(this.playerName);
         this.playerName = '';
       }
     };
 
-    this.add = function(name) {
-      this.players.push(name);
-    };
-
-    this.remove = function(player) {
-      var index = this.players.indexOf(player);
-      if (index != -1) {
-        this.players.splice(index, 1);
-      }
-    };
-
-    this.minimumPlayersToStart = 3;
     this.canBeginGame = function() {
-      return this.players.length >= this.minimumPlayersToStart;
+      return this.selectedPlayers.length >= this.minimumPlayersToStart;
     };
 
     this.beginGame = function() {
       var game = new Game();
-      this.players.forEach(game.addPlayer, game);
+      this.selectedPlayers.forEach(game.addPlayer, game);
 
       game.start();
       return persistence.saveGame(game).then(function(game) {

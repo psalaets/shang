@@ -14,59 +14,72 @@ describe('new game controller', function () {
     });
   }));
 
-  describe('add()', function () {
-    it('adds player to player list', function () {
-      controller.add('bob');
+  describe('selectPlayer()', function() {
+    it('marks player as selected', function() {
+      controller.selectPlayer('bob');
 
-      assert.deepEqual(controller.players, ['bob']);
+      assert.equal(controller.isSelected('bob'), true);
     });
   });
 
-  describe('addFromPlayerName()', function () {
-    it('adds playerName value to player list', function () {
-      controller.playerName = 'bob';
+  describe('selectEnteredPlayer()', function() {
+    it('makes entered player available and selects them', function() {
+      controller.playerName = 'joe';
+      controller.selectEnteredPlayer();
 
-      controller.addFromPlayerName();
-
-      assert.deepEqual(controller.players, ['bob']);
+      assert.notEqual(controller.availablePlayers.indexOf('joe'), -1);
+      assert.equal(controller.isSelected('joe'), true);
     });
 
-    it('reset playerName value to empty string', function () {
-      controller.playerName = 'bob';
+    it('does nothing if playerName is blank', function() {
+      controller.playerName = '';
+      controller.selectEnteredPlayer();
 
-      controller.addFromPlayerName();
+      assert.equal(controller.isSelected(''), false);
+    });
+
+    it('resets playerName', function() {
+      controller.playerName = 'entered player';
+      controller.selectEnteredPlayer();
 
       assert.equal(controller.playerName, '');
     });
+  });
 
-    it('does not add player if playerName is blank', function () {
-      controller.playerName = '';
+  describe('deselectPlayer()', function() {
+    it('makes player not selected', function() {
+      controller.selectPlayer('bob');
 
-      controller.addFromPlayerName();
+      controller.deselectPlayer('bob');
 
-      assert.deepEqual(controller.players, []);
+      assert.equal(controller.isSelected('bob'), false);
     });
   });
 
-  describe('remove()', function () {
-    it('removes player from list by name', function () {
-      controller.add('bob');
-      controller.add('jill');
+  describe('toggleSelection()', function() {
+    it('selects unselected player', function() {
+      controller.toggleSelection('bob');
 
-      controller.remove('bob');
+      assert.equal(controller.isSelected('bob'), true);
+    });
 
-      assert.deepEqual(controller.players, ['jill']);
+    it('deselects selected player', function() {
+      controller.selectPlayer('bob');
+
+      controller.toggleSelection('bob');
+
+      assert.equal(controller.isSelected('bob'), false);
     });
   });
 
   describe('canBeginGame()', function () {
     it('is false until at least three players are in list', function() {
-      controller.add('bob');
-      controller.add('jill');
+      controller.selectPlayer('bob');
+      controller.selectPlayer('jill');
 
       assert(!controller.canBeginGame());
 
-      controller.add('jan');
+      controller.selectPlayer('jan');
 
       assert(controller.canBeginGame());
     });
@@ -100,9 +113,9 @@ describe('new game controller', function () {
     }));
 
     it('starts a new game with given players as current game', function(done) {
-      controller.add('jill');
-      controller.add('joe');
-      controller.add('jen');
+      controller.selectPlayer('jill');
+      controller.selectPlayer('joe');
+      controller.selectPlayer('jen');
 
       controller.beginGame()
         .then(loadFakeGame)
@@ -123,9 +136,9 @@ describe('new game controller', function () {
     });
 
     it('navigates to game', function(done) {
-      controller.add('jill');
-      controller.add('joe');
-      controller.add('jen');
+      controller.selectPlayer('jill');
+      controller.selectPlayer('joe');
+      controller.selectPlayer('jen');
 
       controller.beginGame()
         .then(assertNavigation)
