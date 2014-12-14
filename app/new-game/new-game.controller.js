@@ -2,8 +2,8 @@
   angular.module('app.new-game')
     .controller('NewGameController', NewGameController);
 
-  function NewGameController(persistence, navigation, Game) {
-    this.availablePlayers = [];
+  function NewGameController(availablePlayers, persistence, navigation, Game) {
+    this.availablePlayers = availablePlayers;
     this.selectedPlayers = [];
     this.playerName = '';
     this.minimumPlayersToStart = 3;
@@ -33,9 +33,15 @@
 
     this.selectEnteredPlayer = function() {
       if (this.playerName) {
-        this.availablePlayers.push(this.playerName);
+        this.makeAvailable(this.playerName);
         this.selectPlayer(this.playerName);
         this.playerName = '';
+      }
+    };
+
+    this.makeAvailable = function(player) {
+      if (this.availablePlayers.indexOf(player) == -1) {
+        this.availablePlayers.unshift(player);
       }
     };
 
@@ -48,9 +54,22 @@
       this.selectedPlayers.forEach(game.addPlayer, game);
 
       game.start();
-      return persistence.saveGame(game).then(function(game) {
+
+      return saveAvailablePlayersList(this.availablePlayers)
+        .then(saveGame)
+        .then(goToGame);
+
+      function saveAvailablePlayersList(availablePlayers) {
+        return persistence.setPlayers(availablePlayers);
+      };
+
+      function saveGame() {
+        return persistence.saveGame(game);
+      }
+
+      function goToGame() {
         navigation.goToGame(game.id);
-      });
+      }
     };
   }
 })(angular);

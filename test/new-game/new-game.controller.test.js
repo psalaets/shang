@@ -8,6 +8,7 @@ describe('new game controller', function () {
     scope = $rootScope.$new();
     controller = $controller('NewGameController as setup', {
       $scope: scope,
+      availablePlayers: [],
       persistence: _persistence_,
       navigation: _navigation_,
       Game: _Game_
@@ -103,9 +104,16 @@ describe('new game controller', function () {
           resolve(game);
         });
       });
+
       spyOn(persistence, 'loadGame').and.callFake(function(id) {
         return $q(function(resolve, reject) {
           resolve(savedGame);
+        });
+      });
+
+      spyOn(persistence, 'setPlayers').and.callFake(function(players) {
+        return $q(function(resolve, reject) {
+          resolve(players);
         });
       });
 
@@ -129,6 +137,23 @@ describe('new game controller', function () {
       function assertGameState(game) {
         assert.ok(game.startTime);
         assert.deepEqual(game.getPlayers(), ['jill', 'joe', 'jen']);
+      }
+
+      // must call this to make $q promise chains go
+      $rootScope.$apply();
+    });
+
+    it('saves available player list', function(done) {
+      controller.makeAvailable('bob');
+      controller.makeAvailable('katie');
+      controller.makeAvailable('tim');
+
+      controller.beginGame()
+        .then(assertPlayersWereSaved)
+        .finally(done);
+
+      function assertPlayersWereSaved(players) {
+        expect(persistence.setPlayers).toHaveBeenCalledWith(['tim', 'katie', 'bob']);
       }
 
       // must call this to make $q promise chains go

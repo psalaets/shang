@@ -9,7 +9,12 @@
       .when('/games/new', {
         templateUrl: 'new-game/new-game.html',
         controller: 'NewGameController',
-        controllerAs: 'setup'
+        controllerAs: 'setup',
+        resolve: {
+          availablePlayers: function(persistence) {
+            return persistence.getPlayers();
+          }
+        }
       })
       .when('/games/:id', {
         templateUrl: 'play-game/play-game.html',
@@ -17,7 +22,7 @@
         controllerAs: 'current',
         resolve: {
           currentGame: function($route, persistence) {
-            var gameId = $route.current.params['id'];
+            var gameId = $route.current.params.id;
             return persistence.loadGame(gameId);
           }
         }

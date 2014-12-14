@@ -13,6 +13,16 @@
       return 'game-' + gameId;
     }
 
+    function ensurePlayerListExists() {
+      return $localForage.getItem('players').then(function(players) {
+        if (players) {
+          return players;
+        } else {
+          return $localForage.setItem('players', []);
+        }
+      });
+    }
+
     return {
       saveGame: function(game) {
         function save(game) {
@@ -39,6 +49,14 @@
       },
       deleteGame: function(id) {
         return $localForage.removeItem(key(id));
+      },
+      getPlayers: function() {
+        return ensurePlayerListExists().then(function(players) {
+          return players.sort();
+        });
+      },
+      setPlayers: function(players) {
+        return $localForage.setItem('players', players);
       }
     };
   });
