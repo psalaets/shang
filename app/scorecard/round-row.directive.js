@@ -14,13 +14,11 @@
       controllerAs: 'vm',
       bindToController: true,
       controller: function($scope) {
-        var vm = this;
+        this.readyForNextRound = function() {
+          return this.round.active && this.round.allScoresReported();
+        }.bind(this);
 
-        vm.readyForNextRound = function() {
-          return vm.round.active && vm.round.allScoresReported();
-        };
-
-        vm.nextRound = function() {
+        this.nextRound = function() {
           $scope.$emit('round-finished');
         };
       }

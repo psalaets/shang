@@ -11,14 +11,12 @@
       controllerAs: 'vm',
       bindToController: true,
       controller: function($scope, persistence, navigation) {
-        var vm = this;
-
         $scope.$on('round-finished', function() {
-          vm.game.nextRound();
-          persistence.saveGame(vm.game);
-        });
+          this.game.nextRound();
+          persistence.saveGame(this.game);
+        }.bind(this));
 
-        vm.gameOver = function() {
+        this.gameOver = function() {
           navigation.goToTitle();
         };
       }
