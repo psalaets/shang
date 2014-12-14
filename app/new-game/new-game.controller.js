@@ -5,7 +5,7 @@
   function NewGameController(availablePlayers, persistence, navigation, Game) {
     this.availablePlayers = availablePlayers;
     this.selectedPlayers = [];
-    this.playerName = '';
+    this.enteredName = '';
     this.minimumPlayersToStart = 3;
 
     this.selectPlayer = function(player) {
@@ -32,10 +32,10 @@
     };
 
     this.selectEnteredPlayer = function() {
-      if (this.playerName) {
-        this.makeAvailable(this.playerName);
-        this.selectPlayer(this.playerName);
-        this.playerName = '';
+      if (this.enteredName) {
+        this.makeAvailable(this.enteredName);
+        this.selectPlayer(this.enteredName);
+        this.enteredName = '';
       }
     };
 

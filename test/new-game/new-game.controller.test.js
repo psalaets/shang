@@ -25,25 +25,25 @@ describe('new game controller', function () {
 
   describe('selectEnteredPlayer()', function() {
     it('makes entered player available and selects them', function() {
-      controller.playerName = 'joe';
+      controller.enteredName = 'joe';
       controller.selectEnteredPlayer();
 
       assert.notEqual(controller.availablePlayers.indexOf('joe'), -1);
       assert.equal(controller.isSelected('joe'), true);
     });
 
-    it('does nothing if playerName is blank', function() {
-      controller.playerName = '';
+    it('does nothing if enteredName is blank', function() {
+      controller.enteredName = '';
       controller.selectEnteredPlayer();
 
       assert.equal(controller.isSelected(''), false);
     });
 
-    it('resets playerName', function() {
-      controller.playerName = 'entered player';
+    it('resets enteredName', function() {
+      controller.enteredName = 'entered player';
       controller.selectEnteredPlayer();
 
-      assert.equal(controller.playerName, '');
+      assert.equal(controller.enteredName, '');
     });
   });
 
