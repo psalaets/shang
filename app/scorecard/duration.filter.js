@@ -19,7 +19,7 @@
       }
 
       if (!parts.length) {
-        parts.push('seconds');
+        parts.push('less than 1 minute');
       }
 
       return parts.join(' ');

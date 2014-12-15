@@ -34,19 +34,19 @@ describe('duration filter', function() {
     it('indicates < minute', function() {
       var result = durationFilter(0);
 
-      assert.equal(result, 'seconds');
+      assert.equal(result, 'less than 1 minute');
     });
   });
 
   it('treats null minutes like 0', function() {
     var result = durationFilter(null);
 
-    assert.equal(result, 'seconds');
+    assert.equal(result, 'less than 1 minute');
   });
 
   it('treats undefined minutes like 0', function() {
     var result = durationFilter(void 0);
 
-    assert.equal(result, 'seconds');
+    assert.equal(result, 'less than 1 minute');
   });
 });
