@@ -7,15 +7,22 @@
     this.selectedPlayers = [];
     this.enteredName = '';
     this.minimumPlayersToStart = 3;
+    this.decksNeeded = null;
+
+    this.updateDecksNeeded = function() {
+      this.decksNeeded = Math.ceil(this.selectedPlayers.length / 2);
+    };
 
     this.selectPlayer = function(player) {
       this.selectedPlayers.push(player);
+      this.updateDecksNeeded();
     };
 
     this.deselectPlayer = function(player) {
       var index = this.selectedPlayers.indexOf(player);
       if (index != -1) {
         this.selectedPlayers.splice(index, 1);
+        this.updateDecksNeeded();
       }
     };
 

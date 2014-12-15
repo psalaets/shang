@@ -24,6 +24,9 @@
             <strong>Select More Players</strong>
             <p>Need at least {{::setup.minimumPlayersToStart}} selected to begin game.</p>
         </div>
-        <button ng-if="setup.canBeginGame()" ng-click="setup.beginGame()" class="btn btn-success">Begin Game</button>
+        <div ng-if="setup.canBeginGame()">
+            <button ng-click="setup.beginGame()" class="btn btn-success">Begin Game</button>
+            ({{setup.decksNeeded}} decks)
+        </div>
     </div>
 </div>

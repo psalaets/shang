@@ -73,6 +73,50 @@ describe('new game controller', function () {
     });
   });
 
+  describe('decksNeeded', function() {
+    it('is 2 with 3-4 selected players', function() {
+      controller.selectPlayer('1');
+      controller.selectPlayer('2');
+      controller.selectPlayer('3');
+
+      assert.equal(controller.decksNeeded, 2);
+
+      controller.selectPlayer('4');
+
+      assert.equal(controller.decksNeeded, 2);
+    });
+
+    it('is 3 with 5-6 selected players', function() {
+      controller.selectPlayer('1');
+      controller.selectPlayer('2');
+      controller.selectPlayer('3');
+      controller.selectPlayer('4');
+      controller.selectPlayer('5');
+
+      assert.equal(controller.decksNeeded, 3);
+
+      controller.selectPlayer('6');
+
+      assert.equal(controller.decksNeeded, 3);
+    });
+
+    it('is 4 with 7-8 selected players', function() {
+      controller.selectPlayer('1');
+      controller.selectPlayer('2');
+      controller.selectPlayer('3');
+      controller.selectPlayer('4');
+      controller.selectPlayer('5');
+      controller.selectPlayer('6');
+      controller.selectPlayer('7');
+
+      assert.equal(controller.decksNeeded, 4);
+
+      controller.selectPlayer('8');
+
+      assert.equal(controller.decksNeeded, 4);
+    });
+  });
+
   describe('canBeginGame()', function () {
     it('is false until at least three players are in list', function() {
       controller.selectPlayer('bob');
