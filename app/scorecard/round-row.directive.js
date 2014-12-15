@@ -9,11 +9,14 @@
       restrict: 'A',
       templateUrl: 'scorecard/round-row.html',
       scope: {
-        round: '='
+        round: '=',
+        lastRound: '@'
       },
       controllerAs: 'vm',
       bindToController: true,
       controller: function($scope) {
+        this.nextRoundButtonLabel = this.lastRound == 'true' ? 'Game Over' : 'Next Round';
+
         this.readyForNextRound = function() {
           return this.round.active && this.round.allScoresReported();
         }.bind(this);

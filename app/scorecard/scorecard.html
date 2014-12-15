@@ -16,7 +16,7 @@
                 </th>
             </tr>
             <tr wild-row game="vm.game"></tr>
-            <tr round-row ng-class="{active: round.active}" ng-repeat="round in vm.game.rounds" round="round"></tr>
+            <tr round-row ng-class="{active: round.active}" ng-repeat="round in vm.game.rounds" round="round" last-round="{{$last}}"></tr>
             <tr total-row game="vm.game"></tr>
         </table>
 
