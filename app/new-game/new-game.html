@@ -1,20 +1,6 @@
 <div class="row">
-    <div class="col-xs-12">
-        <h1>Select players</h1>
-    </div>
-</div>
-<div class="row">
     <div class="col-xs-6">
-        <div class="input-group">
-            <form ng-submit="setup.selectEnteredPlayer()">
-                <input type="text" class="form-control" placeholder="Player name" ng-model="setup.enteredName">
-                <span class="input-group-btn">
-                    <input class="btn btn-default" type="submit" value="Add"></input>
-                </span>
-            </form>
-        </div>
-
-        <h2>Players</h2>
+        <h2>Select Players</h2>
         <div class="player-name" ng-class="{'bg-primary': setup.isSelected(player)}" ng-repeat="player in setup.availablePlayers" ng-click="setup.toggleSelection(player)">
             {{player}}
             <span ng-show="setup.isSelected(player)" class="pull-right glyphicon glyphicon-ok"></span>
@@ -27,6 +13,17 @@
         <div ng-if="setup.canBeginGame()">
             <button ng-click="setup.beginGame()" class="btn btn-success">Begin Game</button>
             ({{setup.decksNeeded}} decks)
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <h2>Add Player</h2>
+        <div class="input-group">
+            <form ng-submit="setup.selectEnteredPlayer()">
+                <input type="text" class="form-control" placeholder="Player name" ng-model="setup.enteredName">
+                <span class="input-group-btn">
+                    <input class="btn btn-default" type="submit" value="Add"></input>
+                </span>
+            </form>
         </div>
     </div>
 </div>
