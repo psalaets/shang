@@ -1,6 +1,6 @@
 <td>
     {{vm.round.name}}
-    <button ng-click="vm.nextRound()" ng-show="vm.readyForNextRound()" class="btn btn-primary btn-sm pull-right">Done</button>
+    <button ng-click="vm.nextRound()" ng-show="vm.readyForNextRound()" class="btn btn-primary btn-xs pull-right">Next Round</button>
 </td>
 <td ng-repeat="roundScore in vm.round.scores">
     <div ng-if="vm.round.active">
