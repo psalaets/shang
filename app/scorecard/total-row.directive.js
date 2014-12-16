@@ -12,7 +12,7 @@
       controllerAs: 'vm',
       controller: function() {
         this.totalScoreFor = function(player) {
-          return this.game.totalScore(player);
+          return this.game.totalScore(player.name);
         }.bind(this);
       }
     };

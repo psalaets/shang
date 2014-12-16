@@ -11,17 +11,7 @@ describe('Game', function () {
   it('starts with no players', function () {
     var game = new Game();
 
-    assert.equal(game.getPlayers().length, 0);
-  });
-
-  it('starts all players with no wilds', function() {
-    var game = new Game();
-
-    game.addPlayer('bob');
-    game.addPlayer('amber');
-
-    assert.equal(game.countWilds('bob'), 0);
-    assert.equal(game.countWilds('amber'), 0);
+    assert.equal(game.players.length, 0);
   });
 
   describe('#addPlayer()', function() {
@@ -31,7 +21,24 @@ describe('Game', function () {
       game.addPlayer('bob');
       game.addPlayer('amber');
 
-      assert.deepEqual(game.getPlayers(), ['bob', 'amber']);
+      assert.equal(game.players[0].name, 'bob');
+      assert.equal(game.players[1].name, 'amber');
+    });
+  });
+
+  describe('#getPlayer()', function() {
+    it('gets player by name', function() {
+      var game = new Game();
+
+      game.addPlayer('bob');
+
+      assert.equal(game.getPlayer('bob').name, 'bob');
+    });
+
+    it('returns null if there is no player by that name', function() {
+      var game = new Game();
+
+      assert.equal(game.getPlayer('bob'), null);
     });
   });
 
@@ -77,38 +84,6 @@ describe('Game', function () {
       assert.equal(game.rounds.length, 7);
       assert.equal(game.rounds[0].scores[0].player, 'bob');
       assert.equal(game.rounds[0].scores[1].player, 'amber');
-    });
-  });
-
-  describe('#addWild()', function () {
-    it('increments wild count for player', function() {
-      var game = new Game();
-      game.addPlayer('bob');
-
-      game.addWild('bob');
-
-      assert.equal(game.countWilds('bob'), 1);
-    });
-  });
-
-  describe('#removeWild()', function () {
-    it('decrements wild count for a player', function() {
-      var game = new Game();
-      game.addPlayer('bob');
-
-      game.addWild('bob');
-      game.removeWild('bob');
-
-      assert.equal(game.countWilds('bob'), 0);
-    });
-
-    it('will not let wild count be negative', function() {
-      var game = new Game();
-      game.addPlayer('bob');
-
-      game.removeWild('bob');
-
-      assert.equal(game.countWilds('bob'), 0);
     });
   });
 
@@ -169,7 +144,13 @@ describe('Game', function () {
 
       var data = {
         id: 4,
-        players: ['bob', 'joe'],
+        players: [{
+          name: 'bob',
+          wilds: 2
+        }, {
+          name: 'joe',
+          wilds: 1
+        }],
         rounds: [{
           name: 'Round 1',
           scores: [{
@@ -180,22 +161,17 @@ describe('Game', function () {
             score: 0
           }]
         }],
-        wildsByPlayer: {
-          bob: 2,
-          joe: 1
-        },
         startTime: startTimeString
       };
 
       var game = Game.fromData(data);
 
       assert.equal(game.id, 4);
-      assert.deepEqual(game.getPlayers(), ['bob', 'joe']);
+      assert.equal(game.players[0].name, 'bob');
+      assert.equal(game.players[0].wilds, 2);
+      assert.equal(game.players[1].name, 'joe');
+      assert.equal(game.players[1].wilds, 1);
       assert.deepEqual(game.startTime, startTimeDate);
-      assert.deepEqual(game.wildsByPlayer, {
-        bob: 2,
-        joe: 1
-      });
       assert.equal(game.rounds.length, 1);
     });
   });

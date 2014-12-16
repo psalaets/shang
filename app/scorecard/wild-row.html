@@ -1,13 +1,13 @@
 <td>Wilds</td>
-<td ng-repeat="player in vm.game.players">
+<td ng-repeat="player in vm.players">
     <div class="btn-group">
-      <button type="button" ng-click="vm.add(player)" class="btn btn-default">
+      <button type="button" ng-click="player.addWild()" class="btn btn-default">
           <span class="glyphicon glyphicon-plus"></span>
       </button>
       <button type="button" class="btn btn-default">
-          {{vm.count(player)}}
+          {{player.wilds}}
       </button>
-      <button type="button" ng-click="vm.remove(player)" class="btn btn-default">
+      <button type="button" ng-click="player.removeWild()" class="btn btn-default">
           <span class="glyphicon glyphicon-minus"></span>
       </button>
     </div>

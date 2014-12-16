@@ -7,6 +7,13 @@
     this.rank = null;
   }
 
+  Player.fromData = function(data) {
+    var player = new Player(data.name);
+    player.rank = data.rank;
+    player.wilds = data.wilds;
+    return player;
+  }
+
   var p = Player.prototype;
 
   p.addWild = function() {

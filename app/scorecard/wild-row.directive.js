@@ -6,22 +6,12 @@
       restrict: 'A',
       templateUrl: 'scorecard/wild-row.html',
       scope: {
-        game: '='
+        players: '='
       },
       bindToController: true,
       controllerAs: 'vm',
       controller: function() {
-        this.count = function(player) {
-          return this.game.countWilds(player);
-        };
-
-        this.add = function(player) {
-          this.game.addWild(player);
-        };
-
-        this.remove = function(player) {
-          this.game.removeWild(player);
-        };
+        // controller must exist so scope properties can be accessed in template
       }
     };
   }

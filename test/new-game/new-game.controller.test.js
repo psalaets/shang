@@ -180,7 +180,9 @@ describe('new game controller', function () {
 
       function assertGameState(game) {
         assert.ok(game.startTime);
-        assert.deepEqual(game.getPlayers(), ['jill', 'joe', 'jen']);
+        assert.equal(game.players[0].name, 'jill');
+        assert.equal(game.players[1].name, 'joe');
+        assert.equal(game.players[2].name, 'jen');
       }
 
       // must call this to make $q promise chains go

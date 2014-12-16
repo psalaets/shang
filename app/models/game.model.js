@@ -1,5 +1,5 @@
 ;(function(angular) {
-  angular.module('app.models').factory('Game', function(Round) {
+  angular.module('app.models').factory('Game', function(Round, Player) {
     var roundNames = [
       '2 Groups',
       '1 Run 1 Group',
@@ -15,21 +15,21 @@
       this.startTime = null;
 
       this.rounds = [];
-
-      this.wildsByPlayer = {};
     }
 
     Game.fromData = function(data) {
       var game = new Game();
+
+      game.players = data.players.map(function(playerData) {
+        return Player.fromData(playerData);
+      });
 
       game.rounds = data.rounds.map(function(roundData) {
         return Round.fromData(roundData);
       });
 
       game.id = data.id;
-      game.players = data.players;
       game.startTime = new Date(data.startTime);
-      game.wildsByPlayer = data.wildsByPlayer;
 
       return game;
     };
@@ -37,40 +37,32 @@
     var p = Game.prototype;
 
     p.addPlayer = function(name) {
-      this.players.push(name);
-    };
-
-    p.getPlayers = function() {
-      return this.players.slice();
+      var player = new Player(name);
+      this.players.push(player);
     };
 
     p.start = function() {
+      var playerNames = this.players.map(function(player) {
+        return player.name;
+      });
+
       this.rounds = roundNames.map(function(name) {
-        return new Round(name, this.players);
+        return new Round(name, playerNames);
       }, this);
 
       this.rounds[0].active = true;
       this.startTime = new Date();
     };
 
-    p.addWild = function(player) {
-      this.wildsByPlayer[player] = this.wildsByPlayer[player] || 0;
-      this.wildsByPlayer[player] += 1;
+    p.getPlayer = function(name) {
+      return this.players.filter(function(player) {
+        return player.name === name;
+      })[0] || null;
     };
 
-    p.removeWild = function(player) {
-      if (this.wildsByPlayer[player]) {
-        this.wildsByPlayer[player] -= 1;
-      }
-    };
-
-    p.countWilds = function(player) {
-      return this.wildsByPlayer[player] || 0;
-    };
-
-    p.totalScore = function(player) {
+    p.totalScore = function(name) {
       return this.rounds.reduce(function(total, round) {
-        var roundScore = round.scoreFor(player);
+        var roundScore = round.scoreFor(name);
         return total + roundScore.score || 0;
       }, 0);
     };

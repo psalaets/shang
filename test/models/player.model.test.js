@@ -57,4 +57,21 @@ describe('Player', function () {
       assert.equal(player.wilds, 0);
     });
   });
+
+  describe('.fromData()', function() {
+    it('restores player', function() {
+      var data = {
+        name: 'joe',
+        rank: 1,
+        wilds: 10
+      };
+
+      var player = Player.fromData(data);
+
+      assert.equal(player instanceof Player, true);
+      assert.equal(player.name, 'joe');
+      assert.equal(player.rank, 1);
+      assert.equal(player.wilds, 10);
+    });
+  });
 });
