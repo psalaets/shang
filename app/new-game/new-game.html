@@ -3,7 +3,7 @@
         <div class="col-xs-6">
             <h2>Select Players</h2>
             <div class="player-name" ng-class="{'bg-primary': setup.isSelected(player)}" ng-repeat="player in setup.availablePlayers" ng-click="setup.toggleSelection(player)">
-                {{player}}
+                {{::player}}
                 <span ng-show="setup.isSelected(player)" class="pull-right glyphicon glyphicon-ok"></span>
             </div>
 
