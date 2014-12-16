@@ -32,6 +32,7 @@ module.exports = function(config) {
       'app/models/game.model.js',
       'app/models/round.model.js',
       'app/models/round-score.model.js',
+      'app/models/player.model.js',
 
       'app/services/services.module.js',
       'app/services/navigation.service.js',
