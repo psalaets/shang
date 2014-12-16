@@ -52,6 +52,7 @@ module.exports = function(config) {
       'app/scorecard/round-row.directive.js',
       'app/scorecard/total-row.directive.js',
       'app/scorecard/wild-row.directive.js',
+      'app/scorecard/rank-row.directive.js',
       'app/scorecard/duration.filter.js',
 
       // 3rd party test helper code

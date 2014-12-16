@@ -18,6 +18,7 @@
             <tr wild-row players="vm.game.players"></tr>
             <tr round-row ng-class="{active: round.active}" ng-repeat="round in vm.game.rounds" round="round" last-round="{{$last}}"></tr>
             <tr total-row game="vm.game"></tr>
+            <tr rank-row players="vm.game.players"></tr>
         </table>
 
         <button ng-show="vm.game.isDone()" ng-click="vm.gameOver()" class="btn btn-primary">Return to Title</button>
