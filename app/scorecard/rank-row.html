@@ -3,5 +3,5 @@
 </td>
 <td ng-repeat="player in vm.players">
     {{player.rank | rank}}
-    <span ng-show="player.rank"> - {{::player.name}}</span>
+    <span ng-show="player.rank">({{::player.name}})</span>
 </td>
