@@ -1,26 +1,28 @@
-<div class="row">
-    <div class="col-xs-6">
-        <strong>Started:</strong> {{vm.game.startTime | date:'short'}}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-6">
+            <strong>Started:</strong> {{vm.game.startTime | date:'short'}}
+        </div>
+        <div class="col-xs-6">
+            <strong>Session Time:</strong> {{vm.minutesElapsed | duration}}
+        </div>
     </div>
-    <div class="col-xs-6">
-        <strong>Session Time:</strong> {{vm.minutesElapsed | duration}}
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <table class="table table-bordered">
-            <tr>
-                <th></th>
-                <th ng-repeat="player in vm.game.players">
-                    {{player.name}}
-                </th>
-            </tr>
-            <tr wild-row players="vm.game.players"></tr>
-            <tr round-row ng-class="{active: round.active}" ng-repeat="round in vm.game.rounds" round="round" last-round="{{$last}}"></tr>
-            <tr total-row players="vm.game.players"></tr>
-            <tr rank-row players="vm.game.players"></tr>
-        </table>
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table table-bordered">
+                <tr>
+                    <th></th>
+                    <th ng-repeat="player in vm.game.players">
+                        {{player.name}}
+                    </th>
+                </tr>
+                <tr wild-row players="vm.game.players"></tr>
+                <tr round-row ng-class="{active: round.active}" ng-repeat="round in vm.game.rounds" round="round" last-round="{{$last}}"></tr>
+                <tr total-row players="vm.game.players"></tr>
+                <tr rank-row players="vm.game.players"></tr>
+            </table>
 
-        <button ng-show="vm.game.isDone()" ng-click="vm.gameOver()" class="btn btn-primary">Return to Title</button>
+            <button ng-show="vm.game.isDone()" ng-click="vm.gameOver()" class="btn btn-primary">Return to Title</button>
+        </div>
     </div>
 </div>

@@ -1,31 +1,33 @@
-<div class="row">
-    <div class="col-xs-6">
-        <h2>Select Players</h2>
-        <div class="player-name" ng-class="{'bg-primary': setup.isSelected(player)}" ng-repeat="player in setup.availablePlayers" ng-click="setup.toggleSelection(player)">
-            {{player}}
-            <span ng-show="setup.isSelected(player)" class="pull-right glyphicon glyphicon-ok"></span>
-        </div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+            <h2>Select Players</h2>
+            <div class="player-name" ng-class="{'bg-primary': setup.isSelected(player)}" ng-repeat="player in setup.availablePlayers" ng-click="setup.toggleSelection(player)">
+                {{player}}
+                <span ng-show="setup.isSelected(player)" class="pull-right glyphicon glyphicon-ok"></span>
+            </div>
 
-        <div ng-if="!setup.canBeginGame()" class="alert alert-danger">
-            <strong>Select More Players</strong>
-            <p>Need at least {{::setup.minimumPlayersToStart}} selected to begin game.</p>
+            <div ng-if="!setup.canBeginGame()" class="alert alert-danger">
+                <strong>Select More Players</strong>
+                <p>Need at least {{::setup.minimumPlayersToStart}} selected to begin game.</p>
+            </div>
+            <div ng-if="setup.canBeginGame()">
+                <button ng-click="setup.beginGame()" class="btn btn-success btn-lg btn-block">
+                    Begin Game<br/>
+                    <small>({{setup.decksNeeded}} decks)</small>
+                </button>
+            </div>
         </div>
-        <div ng-if="setup.canBeginGame()">
-            <button ng-click="setup.beginGame()" class="btn btn-success btn-lg btn-block">
-                Begin Game<br/>
-                <small>({{setup.decksNeeded}} decks)</small>
-            </button>
-        </div>
-    </div>
-    <div class="col-xs-6">
-        <h2>Add Player</h2>
-        <div class="input-group">
-            <form ng-submit="setup.selectEnteredPlayer()">
-                <input type="text" class="form-control" placeholder="Player name" ng-model="setup.enteredName">
-                <span class="input-group-btn">
-                    <input class="btn btn-default" type="submit" value="Add"></input>
-                </span>
-            </form>
+        <div class="col-xs-6">
+            <h2>Add Player</h2>
+            <div class="input-group">
+                <form ng-submit="setup.selectEnteredPlayer()">
+                    <input type="text" class="form-control" placeholder="Player name" ng-model="setup.enteredName">
+                    <span class="input-group-btn">
+                        <input class="btn btn-default" type="submit" value="Add"></input>
+                    </span>
+                </form>
+            </div>
         </div>
     </div>
 </div>
