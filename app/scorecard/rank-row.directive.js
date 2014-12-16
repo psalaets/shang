@@ -11,7 +11,9 @@
       bindToController: true,
       controllerAs: 'vm',
       controller: function() {
-        // controller must exist so scope properties can be accessed in template
+        this.isFirst = function(player) {
+          return player.rank === 1;
+        }
       }
     };
   }

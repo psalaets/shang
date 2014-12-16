@@ -1,7 +1,7 @@
 <td>
     <strong>Rank</strong>
 </td>
-<td ng-repeat="player in vm.players">
+<td ng-class="{'first-place': vm.isFirst(player)}" ng-repeat="player in vm.players">
     {{player.rank | rank}}
     <span ng-show="player.rank">({{::player.name}})</span>
 </td>
