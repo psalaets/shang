@@ -2,15 +2,15 @@
   angular.module('app.new-game')
     .controller('NewGameController', NewGameController);
 
-  function NewGameController(availablePlayers, persistence, navigation, Game) {
+  function NewGameController(availablePlayers, rules, persistence, navigation, Game) {
     this.availablePlayers = availablePlayers;
     this.selectedPlayers = [];
     this.enteredName = '';
-    this.minimumPlayersToStart = 3;
+    this.minimumPlayersToStart = rules.minimumPlayersToStart;
     this.decksNeeded = null;
 
     this.updateDecksNeeded = function() {
-      this.decksNeeded = Math.ceil(this.selectedPlayers.length / 2);
+      this.decksNeeded = rules.decksNeeded(this.selectedPlayers.length);
     };
 
     this.selectPlayer = function(player) {

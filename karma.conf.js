@@ -37,6 +37,7 @@ module.exports = function(config) {
       'app/services/services.module.js',
       'app/services/navigation.service.js',
       'app/services/persistence.service.js',
+      'app/services/rules.service.js',
 
       'app/new-game/new-game.module.js',
       'app/new-game/new-game.controller.js',
