@@ -54,6 +54,7 @@ module.exports = function(config) {
       'app/scorecard/wild-row.directive.js',
       'app/scorecard/rank-row.directive.js',
       'app/scorecard/duration.filter.js',
+      'app/scorecard/rank.filter.js',
 
       // 3rd party test helper code
       'app/bower_components/chai/chai.js',
