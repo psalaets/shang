@@ -4,14 +4,14 @@ describe('new game controller', function () {
   var controller, scope;
 
   beforeEach(module('app'));
-  beforeEach(inject(function($controller, $rootScope, _persistence_, _navigation_, _Game_, rules) {
+  beforeEach(inject(function($controller, $rootScope, persistence, navigation, Game, rules) {
     scope = $rootScope.$new();
     controller = $controller('NewGameController as setup', {
       $scope: scope,
       availablePlayers: [],
-      persistence: _persistence_,
-      navigation: _navigation_,
-      Game: _Game_,
+      persistence: persistence,
+      navigation: navigation,
+      Game: Game,
       rules: rules
     });
   }));
