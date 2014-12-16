@@ -6,7 +6,8 @@
       restrict: 'A',
       templateUrl: 'scorecard/wild-row.html',
       scope: {
-        players: '='
+        players: '=',
+        showButtons: '&'
       },
       bindToController: true,
       controllerAs: 'vm',

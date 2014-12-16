@@ -11,7 +11,7 @@
         <div class="col-xs-12">
             <table class="table table-bordered">
                 <tr player-row players="vm.game.players"></tr>
-                <tr wild-row players="vm.game.players"></tr>
+                <tr wild-row show-buttons="!vm.game.isDone()" players="vm.game.players"></tr>
                 <tr round-row ng-class="{active: round.active}" ng-repeat="round in vm.game.rounds" round="round" last-round="{{$last}}"></tr>
                 <tr total-row players="vm.game.players"></tr>
                 <tr rank-row players="vm.game.players"></tr>
