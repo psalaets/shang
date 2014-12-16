@@ -5,12 +5,14 @@
     this.name = name;
     this.wilds = 0;
     this.rank = null;
+    this.totalScore = null;
   }
 
   Player.fromData = function(data) {
     var player = new Player(data.name);
     player.rank = data.rank;
     player.wilds = data.wilds;
+    player.totalScore = data.totalScore;
     return player;
   }
 

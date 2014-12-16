@@ -67,10 +67,18 @@
       }, 0);
     };
 
+    p.calculateTotalScores = function() {
+      this.players.forEach(function(player) {
+        player.totalScore = this.totalScore(player.name);
+      }, this);
+    };
+
     p.nextRound = function() {
       var index = indexOfCurrentRound(this.rounds);
       this.rounds[index].active = false;
       this.rounds[index].completed = true;
+
+      this.calculateTotalScores();
 
       if (!this.isDone()) {
         this.rounds[index + 1].active = true;

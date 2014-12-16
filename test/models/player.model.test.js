@@ -26,6 +26,12 @@ describe('Player', function () {
 
       assert.equal(player.rank, null);
     });
+
+    it('sets totalScore to null', function() {
+      var player = new Player('bob');
+
+      assert.equal(player.totalScore, null);
+    });
   });
 
   describe('#addWild()', function() {
@@ -63,7 +69,8 @@ describe('Player', function () {
       var data = {
         name: 'joe',
         rank: 1,
-        wilds: 10
+        wilds: 10,
+        totalScore: 100
       };
 
       var player = Player.fromData(data);
@@ -72,6 +79,7 @@ describe('Player', function () {
       assert.equal(player.name, 'joe');
       assert.equal(player.rank, 1);
       assert.equal(player.wilds, 10);
+      assert.equal(player.totalScore, 100);
     });
   });
 });

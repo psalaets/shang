@@ -101,6 +101,22 @@ describe('Game', function () {
     });
   });
 
+  describe('#calculateTotalScores()', function () {
+    it('updates players totalScore', function() {
+      var game = new Game();
+      game.addPlayer('amber');
+
+      game.start();
+      game.rounds[0].scoreFor('amber').score = 10;
+      game.rounds[1].scoreFor('amber').score = 50;
+      game.rounds[2].scoreFor('amber').score = 100;
+
+      game.calculateTotalScores();
+
+      assert.equal(game.getPlayer('amber').totalScore, 160);
+    });
+  });
+
   describe('#nextRound()', function () {
     it('deactivates and completes current round and activates round after it', function() {
       var game = new Game();

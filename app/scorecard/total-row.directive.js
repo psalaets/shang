@@ -6,14 +6,12 @@
       restrict: 'A',
       templateUrl: 'scorecard/total-row.html',
       scope: {
-        game: '='
+        players: '='
       },
       bindToController: true,
       controllerAs: 'vm',
       controller: function() {
-        this.totalScoreFor = function(player) {
-          return this.game.totalScore(player.name);
-        }.bind(this);
+        // controller must exist so scope properties can be accessed in template
       }
     };
   }
