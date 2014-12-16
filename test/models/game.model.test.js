@@ -117,6 +117,26 @@ describe('Game', function () {
     });
   });
 
+  describe('#calculateRankings()', function () {
+    it('uses totalScore to update players rank', function() {
+      var game = new Game();
+      game.addPlayer('amber');
+      game.addPlayer('bob');
+
+      game.start();
+      game.rounds[0].scoreFor('amber').score = 10;
+      game.rounds[1].scoreFor('amber').score = 0;
+      game.rounds[0].scoreFor('bob').score = 0;
+      game.rounds[1].scoreFor('bob').score = 20;
+
+      game.calculateTotalScores();
+      game.calculateRankings();
+
+      assert.equal(game.getPlayer('amber').rank, 1);
+      assert.equal(game.getPlayer('bob').rank, 2);
+    });
+  });
+
   describe('#nextRound()', function () {
     it('deactivates and completes current round and activates round after it', function() {
       var game = new Game();

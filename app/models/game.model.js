@@ -73,12 +73,32 @@
       }, this);
     };
 
+    p.calculateRankings = function() {
+      // sort by lowest to highest total score
+      var copy = this.players.slice().sort(function(a, b) {
+        return a.totalScore - b.totalScore;
+      });
+
+      copy.forEach(function(player, index, players) {
+        var prevPlayer = players[index - 1];
+        // if player's score is same as prev player's score
+        if (prevPlayer && player.totalScore === prevPlayer.totalScore) {
+          // they're tied and have same rank
+          player.rank = prevPlayer.rank;
+        } else {
+          // player's rank is its one-based position in array
+          player.rank = index + 1;
+        }
+      });
+    };
+
     p.nextRound = function() {
       var index = indexOfCurrentRound(this.rounds);
       this.rounds[index].active = false;
       this.rounds[index].completed = true;
 
       this.calculateTotalScores();
+      this.calculateRankings();
 
       if (!this.isDone()) {
         this.rounds[index + 1].active = true;
