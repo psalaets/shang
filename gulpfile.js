@@ -14,26 +14,6 @@ var gulp = require('gulp'),
     del = require('del'),
     minifyCss = require('gulp-minify-css');
 
-// glyphicons, bootstrap needs these at ../fonts/ relative to css file
-gulp.task('prep-fonts', ['clean'], function() {
-  gulp.src('app/bower_components/bootstrap/fonts/*')
-    .pipe(gulp.dest('build/fonts'));
-});
-
-gulp.task('prep-styles', ['clean'], function() {
-  return gulp.src('app/index.html')
-    // concat files between build/endbuild comments into a file named according
-    // to build block params
-    .pipe(useref.assets())
-    // filter down to just css files
-    .pipe(filter('*.css'))
-    // minify
-    .pipe(minifyCss())
-    // give unique filename based on file contents
-    .pipe(rev())
-    .pipe(gulp.dest('build/styles'));
-});
-
 gulp.task('gh-pages', ['build'], function() {
   console.log('Copying files to project root:')
 
@@ -78,10 +58,6 @@ gulp.task('prep-index.html', ['clean', 'prep-scripts', 'prep-styles', 'prep-font
       name: 'inject-app-styles'
     }))
     .pipe(gulp.dest('build'));
-});
-
-gulp.task('clean', function(cb) {
-  del(['build'], cb);
 });
 
 gulp.task('prep-scripts', ['prep-app.js', 'prep-vendor.js']);
@@ -130,6 +106,30 @@ gulp.task('prep-vendor.js', ['clean'], function() {
     .pipe(minifyRevAndWrite());
 });
 
+// glyphicons, bootstrap needs these at ../fonts/ relative to css file
+gulp.task('prep-fonts', ['clean'], function() {
+  gulp.src('app/bower_components/bootstrap/fonts/*')
+    .pipe(gulp.dest('build/fonts'));
+});
+
+gulp.task('prep-styles', ['clean'], function() {
+  return gulp.src('app/index.html')
+    // concat files between build/endbuild comments into a file named according
+    // to build block params
+    .pipe(useref.assets())
+    // filter down to just css files
+    .pipe(filter('*.css'))
+    // minify
+    .pipe(minifyCss())
+    // give unique filename based on file contents
+    .pipe(rev())
+    .pipe(gulp.dest('build/styles'));
+});
+
+gulp.task('clean', function(cb) {
+  del(['build'], cb);
+});
+
 gulp.task('watch', function(cb) {
   browserSync({
     server: {
@@ -155,7 +155,7 @@ gulp.task('default', function() {
   console.log('Available tasks:');
   console.log();
   console.log('  watch      Serve page locally with auto-refresh');
-  console.log('  build      Create minified files in build/');
-  console.log('  gh-pages   Move minified files into gh-pages location');
+  console.log('  build      Create deployable files in build/');
+  console.log('  gh-pages   Move deployable files to project root dir');
   console.log();
 });
