@@ -14,10 +14,10 @@ gulp.task('watch', function(cb) {
         'app/**/*.js',
         'app/**/*.css'
       ], {}, browserSync.reload);
-    }
 
-    // signal to gulp that this task is done
-    cb();
+      // signal to gulp that this task is done
+      cb();
+    }
   });
 });
 
