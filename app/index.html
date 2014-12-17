@@ -25,6 +25,7 @@
 <body ng-app="app">
     <ng-view></ng-view>
 
+    <!-- build:js vendor.js -->
     <script src="bower_components/fastclick/lib/fastclick.js"></script>
     <script src="attachFastclick.js"></script>
 
@@ -33,7 +34,9 @@
 
     <script src="bower_components/localforage/dist/localforage.js"></script>
     <script src="bower_components/angular-localForage/dist/angular-localForage.js"></script>
+    <!-- endbuild -->
 
+    <!-- build:js app.js -->
     <script src="app.module.js"></script>
     <script src="app.routes.js"></script>
 
@@ -66,5 +69,6 @@
     <script src="scorecard/player-row.directive.js"></script>
     <script src="scorecard/duration.filter.js"></script>
     <script src="scorecard/rank.filter.js"></script>
+    <!-- endbuild -->
 </body>
 </html>
