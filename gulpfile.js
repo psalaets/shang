@@ -9,11 +9,41 @@ var gulp = require('gulp'),
     angularTemplateCache = require('gulp-angular-templatecache'),
     addStream = require('add-stream'),
     concat = require('gulp-concat'),
-    streamSplicer = require('stream-splicer');
+    streamSplicer = require('stream-splicer'),
+    inject = require('gulp-inject'),
+    del = require('del');
 
-gulp.task('prep-scripts', ['prep-app-scripts', 'prep-vendor-scripts']);
+gulp.task('build', ['prep-index.html']);
 
-gulp.task('prep-app-scripts', function() {
+gulp.task('prep-index.html', ['clean', 'prep-scripts'], function() {
+  var vendorFile = gulp.src('build/scripts/vendor-*.js', {read: false});
+  var appFile = gulp.src('build/scripts/app-*.js', {read: false});
+
+  return gulp.src('app/index.html')
+    // replace script tags marked with inject-vendor/endinject with reference
+    // to vendor.js
+    .pipe(inject(vendorFile, {
+      addRootSlash: false,
+      ignorePath: 'build/',
+      name: 'inject-vendor'
+    }))
+    // replace script tags marked with inject-app/endinject with reference
+    // to app.js
+    .pipe(inject(appFile, {
+      addRootSlash: false,
+      ignorePath: 'build/',
+      name: 'inject-app'
+    }))
+    .pipe(gulp.dest('build'));
+});
+
+gulp.task('clean', function(cb) {
+  del(['build'], cb);
+});
+
+gulp.task('prep-scripts', ['prep-app.js', 'prep-vendor.js']);
+
+gulp.task('prep-app.js', ['clean'], function() {
   return gulp.src('app/index.html')
     // concat files between build/endbuild comments into a file named according
     // to build block params
@@ -47,7 +77,7 @@ function minifyRevAndWrite() {
   ]);
 }
 
-gulp.task('prep-vendor-scripts', function() {
+gulp.task('prep-vendor.js', ['clean'], function() {
   return gulp.src('app/index.html')
     // concat files between build/endbuild comments into a file named according
     // to build block params

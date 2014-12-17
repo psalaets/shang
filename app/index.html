@@ -26,6 +26,7 @@
     <ng-view></ng-view>
 
     <!-- build:js vendor.js -->
+    <!-- inject-vendor:js -->
     <script src="bower_components/fastclick/lib/fastclick.js"></script>
     <script src="attachFastclick.js"></script>
 
@@ -34,9 +35,11 @@
 
     <script src="bower_components/localforage/dist/localforage.js"></script>
     <script src="bower_components/angular-localForage/dist/angular-localForage.js"></script>
+    <!-- endinject -->
     <!-- endbuild -->
 
     <!-- build:js app.js -->
+    <!-- inject-app:js -->
     <script src="app.module.js"></script>
     <script src="app.routes.js"></script>
 
@@ -71,6 +74,7 @@
     <script src="scorecard/rank.filter.js"></script>
 
     <script src="templates.module.js"></script>
+    <!-- endinject -->
     <!-- endbuild -->
 </body>
 </html>
