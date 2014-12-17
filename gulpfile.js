@@ -1,22 +1,24 @@
 var gulp = require('gulp'),
     browserSync = require('browser-sync');
 
-gulp.task('serve', function() {
+gulp.task('watch', function(cb) {
   browserSync({
     server: {
       baseDir: './app/',
       // don't mirror clicks, scroll, forms across browsers
       ghostMode: false
+    },
+    function() {
+      gulp.watch([
+        'app/**/*.html',
+        'app/**/*.js',
+        'app/**/*.css'
+      ], {}, browserSync.reload);
     }
+
+    // signal to gulp that this task is done
+    cb();
   });
 });
 
-gulp.task('dev', ['serve'], function() {
-  gulp.watch([
-    'app/**/*.html',
-    'app/**/*.js',
-    'app/**/*.css'
-  ], {}, browserSync.reload);
-});
-
-gulp.task('default', ['dev']);
+gulp.task('default', ['watch']);
