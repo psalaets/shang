@@ -33,7 +33,6 @@ gulp.task('prep-index.html', ['clean', 'prep-scripts', 'prep-styles', 'prep-font
   var appScripts = gulp.src('build/scripts/app-*.js', {read: false});
 
   var vendorStyles = gulp.src('build/styles/vendor-*.css', {read: false});
-  var appStyles = gulp.src('build/styles/app-*.css', {read: false});
 
   return gulp.src('app/index.html')
     // replace script tags in inject/endinject with vendor.js
@@ -53,12 +52,6 @@ gulp.task('prep-index.html', ['clean', 'prep-scripts', 'prep-styles', 'prep-font
       addRootSlash: false,
       ignorePath: 'build/',
       name: 'inject-vendor-styles'
-    }))
-    // replace script tags in inject/endinject with app.css
-    .pipe(inject(appStyles, {
-      addRootSlash: false,
-      ignorePath: 'build/',
-      name: 'inject-app-styles'
     }))
     // minify - remove marker comments and other stuff
     .pipe(minifyHtml())
