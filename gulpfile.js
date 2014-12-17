@@ -11,7 +11,22 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     streamSplicer = require('stream-splicer'),
     inject = require('gulp-inject'),
-    del = require('del');
+    del = require('del'),
+    minifyCss = require('gulp-minify-css');
+
+gulp.task('prep-styles', ['clean'], function() {
+  return gulp.src('app/index.html')
+    // concat files between build/endbuild comments into a file named according
+    // to build block params
+    .pipe(useref.assets())
+    // filter down to just css files
+    .pipe(filter('*.css'))
+    // minify
+    .pipe(minifyCss())
+    // give unique filename based on file contents
+    .pipe(rev())
+    .pipe(gulp.dest('build/styles'));
+});
 
 gulp.task('gh-pages', ['build'], function() {
   console.log('Copying files to project root:')
@@ -24,24 +39,37 @@ gulp.task('gh-pages', ['build'], function() {
 
 gulp.task('build', ['prep-index.html']);
 
-gulp.task('prep-index.html', ['clean', 'prep-scripts'], function() {
-  var vendorFile = gulp.src('build/scripts/vendor-*.js', {read: false});
-  var appFile = gulp.src('build/scripts/app-*.js', {read: false});
+gulp.task('prep-index.html', ['clean', 'prep-scripts', 'prep-styles'], function() {
+  var vendorScripts = gulp.src('build/scripts/vendor-*.js', {read: false});
+  var appScripts = gulp.src('build/scripts/app-*.js', {read: false});
+
+  var vendorStyles = gulp.src('build/styles/vendor-*.css', {read: false});
+  var appStyles = gulp.src('build/styles/app-*.css', {read: false});
 
   return gulp.src('app/index.html')
-    // replace script tags marked with inject-vendor/endinject with reference
-    // to vendor.js
-    .pipe(inject(vendorFile, {
+    // replace script tags in inject/endinject with vendor.js
+    .pipe(inject(vendorScripts, {
       addRootSlash: false,
       ignorePath: 'build/',
-      name: 'inject-vendor'
+      name: 'inject-vendor-scripts'
     }))
-    // replace script tags marked with inject-app/endinject with reference
-    // to app.js
-    .pipe(inject(appFile, {
+    // replace script tags in inject/endinject with app.js
+    .pipe(inject(appScripts, {
       addRootSlash: false,
       ignorePath: 'build/',
-      name: 'inject-app'
+      name: 'inject-app-scripts'
+    }))
+    // replace script tags in inject/endinject with vendor.css
+    .pipe(inject(vendorStyles, {
+      addRootSlash: false,
+      ignorePath: 'build/',
+      name: 'inject-vendor-styles'
+    }))
+    // replace script tags in inject/endinject with app.css
+    .pipe(inject(appStyles, {
+      addRootSlash: false,
+      ignorePath: 'build/',
+      name: 'inject-app-styles'
     }))
     .pipe(gulp.dest('build'));
 });

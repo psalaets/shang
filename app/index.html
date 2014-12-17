@@ -4,14 +4,23 @@
     <meta charset="UTF-8">
     <title>Shanghai Rummy</title>
 
+    <!-- build:css vendor.css -->
+    <!-- inject-vendor-styles:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+
+    <!-- build:css app.css -->
+    <!-- inject-app-styles:css -->
     <link rel="stylesheet" href="styles/app.css">
+    <!-- endinject -->
+    <!-- endbuild -->
 </head>
 <body ng-app="app">
     <ng-view></ng-view>
 
     <!-- build:js vendor.js -->
-    <!-- inject-vendor:js -->
+    <!-- inject-vendor-scripts:js -->
     <script src="bower_components/fastclick/lib/fastclick.js"></script>
     <script src="attachFastclick.js"></script>
 
@@ -24,7 +33,7 @@
     <!-- endbuild -->
 
     <!-- build:js app.js -->
-    <!-- inject-app:js -->
+    <!-- inject-app-scripts:js -->
     <script src="app.module.js"></script>
     <script src="app.routes.js"></script>
 
