@@ -14,6 +14,12 @@ var gulp = require('gulp'),
     del = require('del'),
     minifyCss = require('gulp-minify-css');
 
+// glyphicons, bootstrap needs these at ../fonts/ relative to css file
+gulp.task('prep-fonts', ['clean'], function() {
+  gulp.src('app/bower_components/bootstrap/fonts/*')
+    .pipe(gulp.dest('build/fonts'));
+});
+
 gulp.task('prep-styles', ['clean'], function() {
   return gulp.src('app/index.html')
     // concat files between build/endbuild comments into a file named according
@@ -39,7 +45,7 @@ gulp.task('gh-pages', ['build'], function() {
 
 gulp.task('build', ['prep-index.html']);
 
-gulp.task('prep-index.html', ['clean', 'prep-scripts', 'prep-styles'], function() {
+gulp.task('prep-index.html', ['clean', 'prep-scripts', 'prep-styles', 'prep-fonts'], function() {
   var vendorScripts = gulp.src('build/scripts/vendor-*.js', {read: false});
   var appScripts = gulp.src('build/scripts/app-*.js', {read: false});
 
