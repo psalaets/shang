@@ -116,4 +116,12 @@ gulp.task('watch', function(cb) {
   });
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default', function() {
+  console.log();
+  console.log('Available tasks:');
+  console.log();
+  console.log('  watch      Serve page locally with auto-refresh');
+  console.log('  build      Create minified files in build/');
+  console.log('  gh-pages   Move minified files into gh-pages location');
+  console.log();
+});
