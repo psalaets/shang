@@ -9,10 +9,13 @@ var gulp                 = require('gulp'),
     concat               = require('gulp-concat'),
     inject               = require('gulp-inject'),
     minifyCss            = require('gulp-minify-css'),
+    minifyHtml           = require('gulp-minify-html'),
+
     addStream            = require('add-stream'),
     browserSync          = require('browser-sync'),
     del                  = require('del'),
-    streamSplicer        = require('stream-splicer');
+    streamSplicer        = require('stream-splicer'),
+    karma                = require('karma').server;
 
 gulp.task('gh-pages', ['build'], function() {
   console.log('Copying files to project root:')
@@ -30,7 +33,6 @@ gulp.task('prep-index.html', ['clean', 'prep-scripts', 'prep-styles', 'prep-font
   var appScripts = gulp.src('build/scripts/app-*.js', {read: false});
 
   var vendorStyles = gulp.src('build/styles/vendor-*.css', {read: false});
-  var appStyles = gulp.src('build/styles/app-*.css', {read: false});
 
   return gulp.src('app/index.html')
     // replace script tags in inject/endinject with vendor.js
@@ -51,12 +53,8 @@ gulp.task('prep-index.html', ['clean', 'prep-scripts', 'prep-styles', 'prep-font
       ignorePath: 'build/',
       name: 'inject-vendor-styles'
     }))
-    // replace script tags in inject/endinject with app.css
-    .pipe(inject(appStyles, {
-      addRootSlash: false,
-      ignorePath: 'build/',
-      name: 'inject-app-styles'
-    }))
+    // minify - remove marker comments and other stuff
+    .pipe(minifyHtml())
     .pipe(gulp.dest('build'));
 });
 
@@ -150,6 +148,13 @@ gulp.task('watch', function(cb) {
   });
 });
 
+gulp.task('test', function(cb) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, cb);
+});
+
 gulp.task('default', function() {
   console.log();
   console.log('Available tasks:');
@@ -157,5 +162,6 @@ gulp.task('default', function() {
   console.log('  watch      Serve page locally with auto-refresh');
   console.log('  build      Create deployable files in build/');
   console.log('  gh-pages   Move deployable files to project root dir');
+  console.log('  test       Run karma once. Use `npm run karma` for {singleRun: false, autoWatch: true}');
   console.log();
 });

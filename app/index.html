@@ -10,11 +10,22 @@
     <!-- endinject -->
     <!-- endbuild -->
 
-    <!-- build:css app.css -->
-    <!-- inject-app-styles:css -->
-    <link rel="stylesheet" href="styles/app.css">
-    <!-- endinject -->
-    <!-- endbuild -->
+    <style>
+    .title {
+        text-align: center;
+    }
+
+    .player-name {
+        padding: 9px;
+        margin: 0px 0px 10px;
+        border-radius: 3px;
+        border: 1px solid #DDD;
+    }
+
+    .first-place {
+        background: #FF0;
+    }
+    </style>
 </head>
 <body ng-app="app">
     <ng-view></ng-view>

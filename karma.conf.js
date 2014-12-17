@@ -58,6 +58,8 @@ module.exports = function(config) {
       'app/scorecard/duration.filter.js',
       'app/scorecard/rank.filter.js',
 
+      'app/templates.module.js',
+
       // 3rd party test helper code
       'app/bower_components/chai/chai.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
