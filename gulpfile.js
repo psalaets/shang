@@ -9,6 +9,8 @@ var gulp                 = require('gulp'),
     concat               = require('gulp-concat'),
     inject               = require('gulp-inject'),
     minifyCss            = require('gulp-minify-css'),
+    minifyHtml           = require('gulp-minify-html'),
+
     addStream            = require('add-stream'),
     browserSync          = require('browser-sync'),
     del                  = require('del'),
@@ -57,6 +59,8 @@ gulp.task('prep-index.html', ['clean', 'prep-scripts', 'prep-styles', 'prep-font
       ignorePath: 'build/',
       name: 'inject-app-styles'
     }))
+    // minify - remove marker comments and other stuff
+    .pipe(minifyHtml())
     .pipe(gulp.dest('build'));
 });
 
