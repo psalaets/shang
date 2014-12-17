@@ -1,18 +1,18 @@
-var gulp = require('gulp'),
-    browserSync = require('browser-sync'),
-    useref = require('gulp-useref'),
-    filter = require('gulp-filter'),
-    filelog = require('gulp-filelog'),
-    ngAnnotate = require('gulp-ng-annotate'),
-    uglify = require('gulp-uglify'),
-    rev = require('gulp-rev'),
+var gulp                 = require('gulp'),
+    browserSync          = require('browser-sync'),
+    useref               = require('gulp-useref'),
+    filter               = require('gulp-filter'),
+    filelog              = require('gulp-filelog'),
+    ngAnnotate           = require('gulp-ng-annotate'),
+    uglify               = require('gulp-uglify'),
+    rev                  = require('gulp-rev'),
     angularTemplateCache = require('gulp-angular-templatecache'),
-    addStream = require('add-stream'),
-    concat = require('gulp-concat'),
-    streamSplicer = require('stream-splicer'),
-    inject = require('gulp-inject'),
-    del = require('del'),
-    minifyCss = require('gulp-minify-css');
+    addStream            = require('add-stream'),
+    concat               = require('gulp-concat'),
+    streamSplicer        = require('stream-splicer'),
+    inject               = require('gulp-inject'),
+    del                  = require('del'),
+    minifyCss            = require('gulp-minify-css');
 
 gulp.task('gh-pages', ['build'], function() {
   console.log('Copying files to project root:')
