@@ -5,6 +5,7 @@ angular.module('app', [
   'app.new-game',
   'app.play-game',
   'app.scorecard',
+  'app.templates',
   // routing
   'ngRoute',
   // offline storage
