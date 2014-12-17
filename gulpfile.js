@@ -13,6 +13,15 @@ var gulp = require('gulp'),
     inject = require('gulp-inject'),
     del = require('del');
 
+gulp.task('gh-pages', ['build'], function() {
+  console.log('Copying files to project root:')
+
+  // copy stuff in build dir to project root
+  return gulp.src('build/**/*')
+    .pipe(gulp.dest('.'))
+    .pipe(filelog());
+});
+
 gulp.task('build', ['prep-index.html']);
 
 gulp.task('prep-index.html', ['clean', 'prep-scripts'], function() {
