@@ -4,7 +4,9 @@ var gulp = require('gulp'),
 gulp.task('serve', function() {
   browserSync({
     server: {
-      baseDir: './app/'
+      baseDir: './app/',
+      // don't mirror clicks, scroll, forms across browsers
+      ghostMode: false
     }
   });
 });
