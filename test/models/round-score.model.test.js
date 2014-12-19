@@ -54,6 +54,30 @@ describe('RoundScore', function () {
     });
   });
 
+  describe('#wentOut', function () {
+    it('is true if score is zero', function() {
+      var roundScore = new RoundScore('billy');
+
+      roundScore.score = 0;
+
+      assert.equal(roundScore.wentOut(), true);
+    });
+
+    it('is false if score is greater than zero', function() {
+      var roundScore = new RoundScore('billy');
+
+      roundScore.score = 5;
+
+      assert.equal(roundScore.wentOut(), false);
+    });
+
+    it('is false if score is not set yet', function() {
+      var roundScore = new RoundScore('billy');
+
+      assert.equal(roundScore.wentOut(), false);
+    });
+  });
+
   describe('.fromData()', function () {
     it('creates RoundScore instance from js object', function() {
       var data = {

@@ -7,6 +7,7 @@
         <input type="number" ng-model="roundScore.score"/>
     </div>
     <div ng-if="!vm.round.active">
-        {{::roundScore.score}}
+        <span ng-show="roundScore.wentOut()" class="glyphicon glyphicon-ok"></span>
+        <span>{{::roundScore.score}}</span>
     </div>
 </td>

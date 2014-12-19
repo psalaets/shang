@@ -12,6 +12,10 @@
     return this.score !== null && this.score !== void 0;
   };
 
+  p.wentOut = function() {
+    return this.score === 0;
+  };
+
   RoundScore.fromData = function(data) {
     var roundScore = new RoundScore(data.player);
     roundScore.score = data.score;
