@@ -93,9 +93,9 @@ describe('Game', function () {
       game.addPlayer('amber');
 
       game.start();
-      game.rounds[0].scoreFor('amber').score = 10;
-      game.rounds[1].scoreFor('amber').score = 50;
-      game.rounds[2].scoreFor('amber').score = 100;
+      game.rounds[0].scoreFor('amber').rawScore = 10;
+      game.rounds[1].scoreFor('amber').rawScore = 50;
+      game.rounds[2].scoreFor('amber').rawScore = 100;
 
       assert.equal(game.totalScore('amber'), 160);
     });
@@ -107,9 +107,9 @@ describe('Game', function () {
       game.addPlayer('amber');
 
       game.start();
-      game.rounds[0].scoreFor('amber').score = 10;
-      game.rounds[1].scoreFor('amber').score = 50;
-      game.rounds[2].scoreFor('amber').score = 100;
+      game.rounds[0].scoreFor('amber').rawScore = 10;
+      game.rounds[1].scoreFor('amber').rawScore = 50;
+      game.rounds[2].scoreFor('amber').rawScore = 100;
 
       game.calculateTotalScores();
 
@@ -124,10 +124,10 @@ describe('Game', function () {
       game.addPlayer('bob');
 
       game.start();
-      game.rounds[0].scoreFor('amber').score = 10;
-      game.rounds[1].scoreFor('amber').score = 0;
-      game.rounds[0].scoreFor('bob').score = 0;
-      game.rounds[1].scoreFor('bob').score = 20;
+      game.rounds[0].scoreFor('amber').rawScore = 10;
+      game.rounds[1].scoreFor('amber').rawScore = 0;
+      game.rounds[0].scoreFor('bob').rawScore = 0;
+      game.rounds[1].scoreFor('bob').rawScore = 20;
 
       game.calculateTotalScores();
       game.calculateRankings();
@@ -191,10 +191,10 @@ describe('Game', function () {
           name: 'Round 1',
           scores: [{
             player: 'bob',
-            score: 5
+            rawScore: 5
           }, {
             player: 'joe',
-            score: 0
+            rawScore: 0
           }]
         }],
         startTime: startTimeString

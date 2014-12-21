@@ -63,7 +63,7 @@
     p.totalScore = function(name) {
       return this.rounds.reduce(function(total, round) {
         var roundScore = round.scoreFor(name);
-        return total + roundScore.score || 0;
+        return total + roundScore.rawScore || 0;
       }, 0);
     };
 
