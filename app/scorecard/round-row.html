@@ -4,10 +4,10 @@
 </td>
 <td ng-repeat="roundScore in vm.round.scores">
     <div ng-if="vm.round.active">
-        <input type="number" ng-model="roundScore.score"/>
+        <input type="number" ng-model="roundScore.rawScore"/>
     </div>
     <div ng-if="!vm.round.active">
         <span ng-show="roundScore.wentOut()" class="glyphicon glyphicon-ok"></span>
-        <span>{{::roundScore.score}}</span>
+        <span>{{::roundScore.rawScore}}</span>
     </div>
 </td>
