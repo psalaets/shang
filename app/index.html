@@ -21,6 +21,10 @@
         border-radius: 3px;
         border: 1px solid #DDD;
     }
+
+    .actual-score {
+        min-width: 3em;
+    }
     </style>
 </head>
 <body ng-app="app">
@@ -33,6 +37,11 @@
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+
+    <script src="bower_components/angular-strap/dist/modules/dimensions.js"></script>
+    <script src="bower_components/angular-strap/dist/modules/tooltip.js"></script>
+    <script src="bower_components/angular-strap/dist/modules/popover.js"></script>
+    <script src="bower_components/angular-strap/dist/modules/popover.tpl.js"></script>
 
     <script src="bower_components/localforage/dist/localforage.js"></script>
     <script src="bower_components/angular-localForage/dist/angular-localForage.js"></script>
@@ -71,6 +80,7 @@
     <script src="scorecard/wild-row.directive.js"></script>
     <script src="scorecard/rank-row.directive.js"></script>
     <script src="scorecard/player-row.directive.js"></script>
+    <script src="scorecard/actual-score.directive.js"></script>
     <script src="scorecard/duration.filter.js"></script>
     <script src="scorecard/rank.filter.js"></script>
 

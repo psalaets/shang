@@ -1,1 +1,1 @@
-angular.module('app.scorecard', []);
+angular.module('app.scorecard', ['mgcrea.ngStrap.popover']);
