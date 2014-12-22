@@ -66,6 +66,9 @@ module.exports = function(config) {
       'app/scorecard/duration.filter.js',
       'app/scorecard/rank.filter.js',
 
+      'app/danger/danger.module.js',
+      'app/danger/danger.controller.js',
+
       'app/templates.module.js',
 
       // 3rd party test helper code
