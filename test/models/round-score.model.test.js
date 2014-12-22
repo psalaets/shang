@@ -36,10 +36,10 @@ describe('RoundScore', function () {
 
   describe('#actualScore', function () {
     describe('rawScore has never been set', function () {
-      it('is 0', function() {
+      it('is null', function() {
         var roundScore = new RoundScore('billy');
 
-        assert.equal(roundScore.actualScore, 0);
+        assert.equal(roundScore.actualScore, null);
       });
     });
 

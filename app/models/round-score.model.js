@@ -20,7 +20,9 @@
 
   Object.defineProperty(p, 'actualScore', {
     get: function() {
-      var actualScore = this.rawScore || 0;
+      if (!this.scoreReported()) return null;
+
+      var actualScore = this.rawScore;
 
       if (this.perfectDeal) {
         actualScore -= 5;

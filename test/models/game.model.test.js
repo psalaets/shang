@@ -99,6 +99,15 @@ describe('Game', function () {
 
       assert.equal(game.totalScore('amber'), 160);
     });
+
+    it('is null if player has no scores yet', function() {
+      var game = new Game();
+      game.addPlayer('amber');
+
+      game.start();
+
+      assert.equal(game.totalScore('amber'), null);
+    });
   });
 
   describe('#calculateTotalScores()', function () {
