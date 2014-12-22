@@ -11,7 +11,7 @@
       },
       controllerAs: 'vm',
       bindToController: true,
-      controller: function() {
+      controller: function($scope) {
         this.actualScore = function() {
           var actual = this.roundScore.actualScore;
           if (actual || actual === 0) {
@@ -21,10 +21,21 @@
           }
         };
 
+        /** Begin stuff for actual-score-popover.html **/
+
         this.popoverConfig = {
           trigger: 'click',
           title: 'Enter score for ' + this.roundScore.player
         };
+
+        // propagate shanghai flag to round if player achieved it
+        $scope.$watch('vm.roundScore.gotShanghai', function(newValue, oldValue) {
+          if (newValue !== oldValue) {
+            this.round.shanghai = newValue;
+          }
+        }.bind(this));
+
+        /** End stuff for actual-score-popover.html **/
       }
     };
   }

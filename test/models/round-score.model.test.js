@@ -32,6 +32,12 @@ describe('RoundScore', function () {
 
       assert.equal(roundScore.shanghai, false);
     });
+
+    it('starts gotShanghai as false', function () {
+      var roundScore = new RoundScore('billy');
+
+      assert.equal(roundScore.gotShanghai, false);
+    });
   });
 
   describe('#actualScore', function () {
@@ -165,7 +171,8 @@ describe('RoundScore', function () {
         player: 'bob',
         rawScore: 10,
         perfectDeal: true,
-        shanghai: false
+        shanghai: false,
+        gotShanghai: false
       };
 
       var roundScore = RoundScore.fromData(data);
@@ -174,6 +181,7 @@ describe('RoundScore', function () {
       assert.equal(roundScore.rawScore, 10);
       assert.equal(roundScore.perfectDeal, true);
       assert.equal(roundScore.shanghai, false);
+      assert.equal(roundScore.gotShanghai, false);
     });
   });
 });

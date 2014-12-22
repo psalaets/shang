@@ -5,7 +5,10 @@
     this.player = player;
     this.rawScore = null;
     this.perfectDeal = false;
+    // indicates if a shang happened in the round
     this.shanghai = false;
+    // indicates if *this* player is the one who did the shang'ing
+    this.gotShanghai = false;
   }
 
   var p = RoundScore.prototype;
@@ -41,6 +44,7 @@
     roundScore.rawScore = data.rawScore;
     roundScore.perfectDeal = data.perfectDeal;
     roundScore.shanghai = data.shanghai;
+    roundScore.gotShanghai = data.gotShanghai;
     return roundScore;
   };
 })(angular);
