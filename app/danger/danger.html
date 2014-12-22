@@ -7,8 +7,8 @@
                 </div>
                 <div class="panel-body">
                     <p>This cannot be undone.</p>
-                    <a ng-click="danger.clearGames()" ng-class="{disabled: danger.deletingGames}" class="btn btn-danger">Delete Games</a>
-                    <span ng-show="danger.deletingGames">Deleting...</span>
+                    <a ng-click="danger.clearGames()" ng-class="{disabled: danger.games.pending}" class="btn btn-danger">Delete Games</a>
+                    {{danger.games.message}}
                 </div>
             </div>
         </div>
@@ -19,8 +19,8 @@
                 </div>
                 <div class="panel-body">
                     <p>This cannot be undone.</p>
-                    <a ng-click="danger.clearPlayers()" ng-class="{disabled: danger.deletingPlayers}" class="btn btn-danger">Delete Players</a>
-                    <span ng-show="danger.deletingPlayers">Deleting...</span>
+                    <a ng-click="danger.clearPlayers()" ng-class="{disabled: danger.players.pending}" class="btn btn-danger">Delete Players</a>
+                    {{danger.players.message}}
                 </div>
             </div>
         </div>
