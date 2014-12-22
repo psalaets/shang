@@ -62,6 +62,7 @@ module.exports = function(config) {
       'app/scorecard/rank-row.directive.js',
       'app/scorecard/player-row.directive.js',
       'app/scorecard/actual-score.directive.js',
+      'app/scorecard/instafocus.directive.js',
       'app/scorecard/duration.filter.js',
       'app/scorecard/rank.filter.js',
 

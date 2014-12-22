@@ -14,8 +14,7 @@
       controller: function() {
         this.popoverConfig = {
           trigger: 'click',
-          title: 'Enter score for ' + this.roundScore.player,
-          autoClose: true
+          title: 'Enter score for ' + this.roundScore.player
         };
       }
     };
