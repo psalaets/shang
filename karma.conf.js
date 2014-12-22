@@ -21,6 +21,12 @@ module.exports = function(config) {
 
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-route/angular-route.js',
+
+      'app/bower_components/angular-strap/dist/modules/dimensions.js',
+      'app/bower_components/angular-strap/dist/modules/tooltip.js',
+      'app/bower_components/angular-strap/dist/modules/popover.js',
+      'app/bower_components/angular-strap/dist/modules/popover.tpl.js',
+
       'app/bower_components/localforage/dist/localforage.js',
       'app/bower_components/angular-localForage/dist/angular-localForage.js',
 
@@ -55,6 +61,8 @@ module.exports = function(config) {
       'app/scorecard/wild-row.directive.js',
       'app/scorecard/rank-row.directive.js',
       'app/scorecard/player-row.directive.js',
+      'app/scorecard/actual-score.directive.js',
+      'app/scorecard/instafocus.directive.js',
       'app/scorecard/duration.filter.js',
       'app/scorecard/rank.filter.js',
 

@@ -1,0 +1,22 @@
+<!--
+    Scope:
+
+    - actual-score directives's scope is 'vm'
+    - popover's scope is the implicit scope
+-->
+<form ng-submit="$hide()">
+    <div class="form-group">
+        <input type="number" data-instafocus ng-model="vm.roundScore.rawScore"/>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="vm.roundScore.gotShanghai"> Shanghai (2x others)
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="vm.roundScore.perfectDeal"> Perfect Deal (-5)
+            </label>
+        </div>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Done"/>
+</form>

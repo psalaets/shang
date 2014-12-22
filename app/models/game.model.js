@@ -61,10 +61,21 @@
     };
 
     p.totalScore = function(name) {
-      return this.rounds.reduce(function(total, round) {
-        var roundScore = round.scoreFor(name);
-        return total + roundScore.score || 0;
-      }, 0);
+      var roundScores = this.rounds.map(function(round) {
+        return round.scoreFor(name);
+      });
+
+      var anyScoresReported = roundScores.some(function(roundScore) {
+        return roundScore.scoreReported();
+      });
+
+      if (anyScoresReported) {
+        return roundScores.reduce(function(total, roundScore) {
+          return total + roundScore.actualScore || 0;
+        }, 0);
+      } else {
+        return null;
+      }
     };
 
     p.calculateTotalScores = function() {

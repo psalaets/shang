@@ -50,21 +50,60 @@ describe('Round', function () {
   });
 
   describe('#allScoresReported()', function () {
-    it('returns true when every round score has a score', function() {
+    it('returns true when every round score has a rawScore', function() {
       var round = new Round('first', ['bob', 'jill']);
 
-      round.scores[0].score = 20;
-      round.scores[1].score = 30;
+      round.scores[0].rawScore = 20;
+      round.scores[1].rawScore = 30;
 
       assert.equal(round.allScoresReported(), true);
     });
 
-    it('false when at least one round score does not have a score', function() {
+    it('false when at least one round score does not have a rawScore', function() {
       var round = new Round('first', ['bob', 'jill']);
 
-      round.scores[0].score = 20;
+      round.scores[0].rawScore = 20;
 
       assert.equal(round.allScoresReported(), false);
+    });
+  });
+
+  describe('#shanghai', function () {
+    it('setting it to true sets all roundScores shanghai to true', function() {
+      var round = new Round('first', ['bob', 'jill']);
+
+      round.shanghai = true;
+
+      assert.equal(round.scores[0].shanghai, true);
+      assert.equal(round.scores[1].shanghai, true);
+    });
+
+    it('setting it to false sets all roundScores shanghai to false', function() {
+      var round = new Round('first', ['bob', 'jill']);
+
+      round.shanghai = true;
+      round.shanghai = false;
+
+      assert.equal(round.scores[0].shanghai, false);
+      assert.equal(round.scores[1].shanghai, false);
+    });
+
+    it('is true if any roundScore shanghai is true', function() {
+      var round = new Round('first', ['bob', 'jill']);
+
+      round.scores[1].shanghai = true;
+
+      assert.equal(round.shanghai, true);
+    });
+
+    it('is false if all roundScores shanghai are false', function() {
+      var round = new Round('first', ['bob', 'jill']);
+      round.shanghai = true;
+
+      round.scores[0].shanghai = false;
+      round.scores[1].shanghai = false;
+
+      assert.equal(round.shanghai, false);
     });
   });
 
@@ -76,10 +115,10 @@ describe('Round', function () {
         completed: false,
         scores: [{
           player: 'bob',
-          score: 5
+          rawScore: 5
         }, {
           player: 'jen',
-          score: 0
+          rawScore: 0
         }]
       };
 
@@ -89,9 +128,9 @@ describe('Round', function () {
       assert.equal(round.active, true);
       assert.equal(round.completed, false);
       assert.equal(round.scores[0].player, 'bob');
-      assert.equal(round.scores[0].score, 5);
+      assert.equal(round.scores[0].rawScore, 5);
       assert.equal(round.scores[1].player, 'jen');
-      assert.equal(round.scores[1].score, 0);
+      assert.equal(round.scores[1].rawScore, 0);
     });
   });
 });

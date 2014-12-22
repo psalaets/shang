@@ -1,12 +1,15 @@
 <td>
     {{::vm.round.name}}
-    <button ng-click="vm.nextRound()" ng-show="vm.readyForNextRound()" class="btn btn-primary btn-xs pull-right">{{vm.nextRoundButtonLabel}}</button>
+    <button ng-click="vm.nextRound()" ng-show="vm.readyForNextRound()" class="btn btn-primary btn-sm pull-right">{{vm.nextRoundButtonLabel}}</button>
 </td>
 <td ng-repeat="roundScore in vm.round.scores">
     <div ng-if="vm.round.active">
-        <input type="number" ng-model="roundScore.score"/>
+        <actual-score round="vm.round" round-score="roundScore"/>
     </div>
     <div ng-if="!vm.round.active">
-        {{::roundScore.score}}
+        {{::roundScore.actualScore}}
     </div>
+    <span ng-show="roundScore.wentOut()" class="label label-success">Out</span>
+    <span ng-show="roundScore.gotShanghai" class="label label-danger">上海市</span>
+    <span ng-show="roundScore.perfectDeal" class="label label-info">Perfect Deal</span>
 </td>

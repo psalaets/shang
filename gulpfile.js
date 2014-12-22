@@ -10,6 +10,7 @@ var gulp                 = require('gulp'),
     inject               = require('gulp-inject'),
     minifyCss            = require('gulp-minify-css'),
     minifyHtml           = require('gulp-minify-html'),
+    angularHtmlify       = require('gulp-angular-htmlify'),
 
     addStream            = require('add-stream'),
     browserSync          = require('browser-sync'),
@@ -53,8 +54,7 @@ gulp.task('prep-index.html', ['clean', 'prep-scripts', 'prep-styles', 'prep-font
       ignorePath: 'build/',
       name: 'inject-vendor-styles'
     }))
-    // minify - remove marker comments and other stuff
-    .pipe(minifyHtml())
+    .pipe(fixDataAttributesAndMinifyHtml())
     .pipe(gulp.dest('build'));
 });
 
@@ -76,12 +76,34 @@ gulp.task('prep-app.js', ['clean'], function() {
 });
 
 function inlineTemplates() {
-  // grab any html file *except* index.html
-  return gulp.src('app/**/!(index).html')
+  var justTemplates = filter(function(vinylFile) {
+    var path = vinylFile.path;
+
+    // nothing from bower and not the main html page
+    return !/app\/bower_components/.test(path) && !/index.html/.test(path);
+  });
+
+  return gulp.src('app/**/*.html')
+    .pipe(justTemplates)
+    .pipe(fixDataAttributesAndMinifyHtml())
     // create js file that puts html in angular's $templateCache
     .pipe(angularTemplateCache({
       module: 'app.templates'
     }));
+}
+
+function fixDataAttributesAndMinifyHtml() {
+  return streamSplicer.obj([
+    // convert ng-foo attributes to data-ng-foo
+    angularHtmlify(),
+    // minify - remove marker comments and other stuff
+    minifyHtml({
+      // preserve empty attributes (removing would break our angular stuff)
+      empty: true,
+      // preserve quotes
+      quotes: true
+    })
+  ]);
 }
 
 function minifyRevAndWrite() {
