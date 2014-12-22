@@ -84,6 +84,13 @@ gulp.task('prep-app.js', ['clean'], function() {
 function inlineTemplates() {
   // grab any html file *except* index.html
   return gulp.src('app/**/!(index).html')
+    // convert ng-foo attributes to data-ng-foo
+    .pipe(angularHtmlify())
+    // minify - remove marker comments and other stuff
+    .pipe(minifyHtml({
+      // preserve empty attributes (removing would break our angular stuff)
+      empty: true
+    }))
     // create js file that puts html in angular's $templateCache
     .pipe(angularTemplateCache({
       module: 'app.templates'
