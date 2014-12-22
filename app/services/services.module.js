@@ -1,1 +1,4 @@
-angular.module('app.services', []);
+angular.module('app.services', [
+  // offline storage
+  'LocalForageModule'
+]);
