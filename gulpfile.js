@@ -54,13 +54,7 @@ gulp.task('prep-index.html', ['clean', 'prep-scripts', 'prep-styles', 'prep-font
       ignorePath: 'build/',
       name: 'inject-vendor-styles'
     }))
-    // convert ng-foo attributes to data-ng-foo
-    .pipe(angularHtmlify())
-    // minify - remove marker comments and other stuff
-    .pipe(minifyHtml({
-      // preserve empty attributes (removing would break our angular stuff)
-      empty: true
-    }))
+    .pipe(fixDataAttributesAndMinifyHtml())
     .pipe(gulp.dest('build'));
 });
 
@@ -84,17 +78,25 @@ gulp.task('prep-app.js', ['clean'], function() {
 function inlineTemplates() {
   // grab any html file *except* index.html
   return gulp.src('app/**/!(index).html')
-    // convert ng-foo attributes to data-ng-foo
-    .pipe(angularHtmlify())
-    // minify - remove marker comments and other stuff
-    .pipe(minifyHtml({
-      // preserve empty attributes (removing would break our angular stuff)
-      empty: true
-    }))
+    .pipe(fixDataAttributesAndMinifyHtml())
     // create js file that puts html in angular's $templateCache
     .pipe(angularTemplateCache({
       module: 'app.templates'
     }));
+}
+
+function fixDataAttributesAndMinifyHtml() {
+  return streamSplicer.obj([
+    // convert ng-foo attributes to data-ng-foo
+    angularHtmlify(),
+    // minify - remove marker comments and other stuff
+    minifyHtml({
+      // preserve empty attributes (removing would break our angular stuff)
+      empty: true,
+      // preserve quotes
+      quotes: true
+    })
+  ]);
 }
 
 function minifyRevAndWrite() {
