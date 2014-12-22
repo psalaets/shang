@@ -10,8 +10,10 @@
       },
       controllerAs: 'vm',
       bindToController: true,
-      controller: function() {
-        // controller must exist so scope properties can be accessed in template
+      controller: function(navigation) {
+        this.goHome = function() {
+          navigation.goToTitle();
+        };
       }
     };
   }
