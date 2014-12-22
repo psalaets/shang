@@ -10,6 +10,7 @@ var gulp                 = require('gulp'),
     inject               = require('gulp-inject'),
     minifyCss            = require('gulp-minify-css'),
     minifyHtml           = require('gulp-minify-html'),
+    angularHtmlify       = require('gulp-angular-htmlify'),
 
     addStream            = require('add-stream'),
     browserSync          = require('browser-sync'),
@@ -53,8 +54,13 @@ gulp.task('prep-index.html', ['clean', 'prep-scripts', 'prep-styles', 'prep-font
       ignorePath: 'build/',
       name: 'inject-vendor-styles'
     }))
+    // convert ng-foo attributes to data-ng-foo
+    .pipe(angularHtmlify())
     // minify - remove marker comments and other stuff
-    .pipe(minifyHtml())
+    .pipe(minifyHtml({
+      // preserve empty attributes (removing would break our angular stuff)
+      empty: true
+    }))
     .pipe(gulp.dest('build'));
 });
 
