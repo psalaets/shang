@@ -1,1 +1,1 @@
-angular.module('app.new-game', []);
+angular.module('app.new-game', ['app.models']);

@@ -1,10 +1,10 @@
 <td>
     {{::vm.round.name}}
-    <button ng-click="vm.nextRound()" ng-show="vm.readyForNextRound()" class="btn btn-primary btn-sm pull-right">{{vm.nextRoundButtonLabel}}</button>
+    <button ng-click="vm.nextRound()" ng-show="vm.readyForNextRound()" class="btn btn-primary btn-sm pull-right">{{::vm.nextRoundButtonLabel}}</button>
 </td>
 <td ng-repeat="roundScore in vm.round.scores">
     <div ng-if="vm.round.active">
-        <actual-score round="vm.round" round-score="roundScore"/>
+        <actual-score round="vm.round" round-score="roundScore" index="{{::$index}}"/>
     </div>
     <div ng-if="!vm.round.active">
         {{::roundScore.actualScore}}

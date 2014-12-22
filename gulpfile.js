@@ -184,6 +184,6 @@ gulp.task('default', function() {
   console.log('  watch      Serve page locally with auto-refresh');
   console.log('  build      Create deployable files in build/');
   console.log('  gh-pages   Move deployable files to project root dir');
-  console.log('  test       Run karma once. Use `npm run karma` for {singleRun: false, autoWatch: true}');
+  console.log('  test       Run karma once. Use `npm run karma` to auto-test on every change');
   console.log();
 });

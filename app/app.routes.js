@@ -26,6 +26,11 @@
             return persistence.loadGame(gameId);
           }
         }
+      })
+      .when('/danger', {
+        templateUrl: 'danger/danger.html',
+        controller: 'DangerController',
+        controllerAs: 'danger'
       });
   });
 })(angular);
