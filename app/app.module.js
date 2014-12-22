@@ -1,5 +1,4 @@
 angular.module('app', [
-  'app.models',
   'app.services',
   // routes
   'app.title',
