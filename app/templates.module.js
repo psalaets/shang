@@ -1,5 +1,5 @@
 /*
 * Build process will inline html templates into $templateCache using this
-* namespace. Other than that, it's useless.
+* namespace. That's the only purpose this module serves.
 */
 angular.module('app.templates', []);
