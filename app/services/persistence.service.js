@@ -1,5 +1,5 @@
 ;(function(angular) {
-  angular.module('app.services').factory('persistence', function($localForage, Game) {
+  angular.module('app.services').factory('persistence', function($localForage, $q, Game) {
 
     function nextGameId() {
       return $localForage.getItem('nextGameId').then(function(id) {
@@ -11,6 +11,10 @@
     // convert game id to persistence key
     function key(gameId) {
       return 'game-' + gameId;
+    }
+
+    function isGameKey(key) {
+      return /game-/.test(key);
     }
 
     function ensurePlayerListExists() {
@@ -50,6 +54,22 @@
       deleteGame: function(id) {
         return $localForage.removeItem(key(id));
       },
+      deleteAllGames: function() {
+        var gameKeys = [];
+
+        return $localForage.iterate(function(value, key) {
+          if (isGameKey(key)) {
+            gameKeys.push(key);
+          }
+        }).then(function() {
+          return $q.all(gameKeys.map(function(key) {
+            return $localForage.removeItem(key);
+          }));
+        }).then(function() {
+          // reset game id sequence
+          return $localForage.removeItem('nextGameId');
+        });
+      },
       getPlayers: function() {
         return ensurePlayerListExists().then(function(players) {
           return players.sort();
@@ -57,6 +77,9 @@
       },
       setPlayers: function(players) {
         return $localForage.setItem('players', players);
+      },
+      deletePlayers: function() {
+        return $localForage.removeItem('players');
       }
     };
   });
