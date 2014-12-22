@@ -68,6 +68,45 @@ describe('Round', function () {
     });
   });
 
+  describe('#shanghai', function () {
+    it('setting it to true sets all roundScores shanghai to true', function() {
+      var round = new Round('first', ['bob', 'jill']);
+
+      round.shanghai = true;
+
+      assert.equal(round.scores[0].shanghai, true);
+      assert.equal(round.scores[1].shanghai, true);
+    });
+
+    it('setting it to false sets all roundScores shanghai to false', function() {
+      var round = new Round('first', ['bob', 'jill']);
+
+      round.shanghai = true;
+      round.shanghai = false;
+
+      assert.equal(round.scores[0].shanghai, false);
+      assert.equal(round.scores[1].shanghai, false);
+    });
+
+    it('is true if any roundScore shanghai is true', function() {
+      var round = new Round('first', ['bob', 'jill']);
+
+      round.scores[1].shanghai = true;
+
+      assert.equal(round.shanghai, true);
+    });
+
+    it('is false if all roundScores shanghai are false', function() {
+      var round = new Round('first', ['bob', 'jill']);
+      round.shanghai = true;
+
+      round.scores[0].shanghai = false;
+      round.scores[1].shanghai = false;
+
+      assert.equal(round.shanghai, false);
+    });
+  });
+
   describe('.fromData()', function () {
     it('creates Round instance from plain js object', function () {
       var data = {

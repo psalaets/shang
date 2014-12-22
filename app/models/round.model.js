@@ -38,6 +38,19 @@
       });
     };
 
+    Object.defineProperty(p, 'shanghai', {
+      set: function(shanghai) {
+        this.scores.forEach(function(roundScore) {
+          roundScore.shanghai = shanghai;
+        });
+      },
+      get: function() {
+        return this.scores.some(function(roundScore) {
+          return roundScore.shanghai;
+        });
+      }
+    });
+
     return Round;
   });
 
