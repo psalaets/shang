@@ -1,8 +1,10 @@
 <button
   class="actual-score btn btn-default"
-  bs-popover="vm.popoverConfig"
+  bs-popover
   content-template="scorecard/actual-score-popover.html"
   auto-close="true"
+  trigger="click"
+  title="Enter score for {{::vm.roundScore.player}}"
   >
     {{vm.actualScore()}}
 </button>

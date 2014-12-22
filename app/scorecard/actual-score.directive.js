@@ -23,11 +23,6 @@
 
         /** Begin stuff for actual-score-popover.html **/
 
-        this.popoverConfig = {
-          trigger: 'click',
-          title: 'Enter score for ' + this.roundScore.player
-        };
-
         // propagate shanghai flag to round if player achieved it
         $scope.$watch('vm.roundScore.gotShanghai', function(newValue, oldValue) {
           if (newValue !== oldValue) {
