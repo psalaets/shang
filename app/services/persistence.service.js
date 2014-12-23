@@ -55,15 +55,12 @@
         return $localForage.removeItem(key(id));
       },
       deleteAllGames: function() {
+        var self = this;
         var gameKeys = [];
 
-        return $localForage.iterate(function(value, key) {
-          if (isGameKey(key)) {
-            gameKeys.push(key);
-          }
-        }).then(function() {
-          return $q.all(gameKeys.map(function(key) {
-            return $localForage.removeItem(key);
+        return this.getGames().then(function(games) {
+          return $q.all(games.map(function(game) {
+            return self.deleteGame(game.id);
           }));
         }).then(function() {
           // reset game id sequence
