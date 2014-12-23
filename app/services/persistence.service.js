@@ -70,6 +70,17 @@
           return $localForage.removeItem('nextGameId');
         });
       },
+      getGames: function() {
+        var games = [];
+
+        return $localForage.iterate(function(value, key) {
+          if (isGameKey(key)) {
+            games.push(value);
+          }
+        }).then(function() {
+          return games;
+        });
+      },
       getPlayers: function() {
         return ensurePlayerListExists().then(function(players) {
           return players.sort();
