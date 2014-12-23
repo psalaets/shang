@@ -66,6 +66,9 @@ module.exports = function(config) {
       'app/scorecard/duration.filter.js',
       'app/scorecard/rank.filter.js',
 
+      'app/list-games/list-games.module.js',
+      'app/list-games/list-games.controller.js',
+
       'app/danger/danger.module.js',
       'app/danger/danger.controller.js',
 

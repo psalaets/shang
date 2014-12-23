@@ -5,6 +5,7 @@ angular.module('app', [
   'app.new-game',
   'app.play-game',
   'app.scorecard',
+  'app.list-games',
   'app.danger',
   // partials are inlined under this namespace
   'app.templates',

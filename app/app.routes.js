@@ -27,6 +27,11 @@
           }
         }
       })
+      .when('/games', {
+        templateUrl: 'list-games/list-games.html',
+        controller: 'ListGamesController',
+        controllerAs: 'list'
+      })
       .when('/danger', {
         templateUrl: 'danger/danger.html',
         controller: 'DangerController',
