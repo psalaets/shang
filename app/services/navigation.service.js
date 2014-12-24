@@ -12,6 +12,9 @@
       },
       goToTitle: function() {
         $location.path('/');
+      },
+      goToGamesList: function() {
+        $location.path('/games');
       }
     };
   }

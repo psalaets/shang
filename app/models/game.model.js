@@ -125,11 +125,29 @@
       return null;
     }
 
-    p.isDone = function() {
-      return this.rounds.every(function(round) {
-        return round.completed;
+    p.roundsLeft = function() {
+      var count = 0;
+
+      this.rounds.forEach(function(round) {
+        if (!round.completed) {
+          count += 1;
+        }
       });
+
+      return count;
     };
+
+    p.isDone = function() {
+      return this.roundsLeft() == 0;
+    };
+
+    Object.defineProperty(p, 'playerNames', {
+      get: function() {
+        return this.players.map(function(player) {
+          return player.name;
+        });
+      }
+    });
 
     return Game;
   });

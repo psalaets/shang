@@ -42,6 +42,24 @@ describe('Game', function () {
     });
   });
 
+  describe('#playerNames', function() {
+    it('is empty for games with no players', function() {
+      var game = new Game();
+
+      assert.equal(game.playerNames.length, 0);
+    });
+
+    it('contains names of players in game', function() {
+      var game = new Game();
+
+      game.addPlayer('jane');
+      game.addPlayer('jill');
+      game.addPlayer('jen');
+
+      assert.deepEqual(game.playerNames, ['jane', 'jill', 'jen']);
+    });
+  });
+
   describe('#start()', function() {
     it('sets start time', function() {
       var game = new Game();
@@ -179,6 +197,28 @@ describe('Game', function () {
       game.nextRound(); // mark (last) round 7 done
 
       assert.equal(game.isDone(), true);
+    });
+  });
+
+  describe('#roundsLeft()', function() {
+    it('is 7 for a newly started game', function() {
+      var game = new Game();
+      game.addPlayer('amber');
+      game.start();
+
+      assert.equal(game.roundsLeft(), 7);
+    });
+
+    it('tells how many rounds are not completed', function() {
+      var game = new Game();
+      game.addPlayer('amber');
+      game.start();
+
+      game.nextRound(); // mark round 1 done
+      game.nextRound(); // mark round 2 done
+      game.nextRound(); // mark round 3 done
+
+      assert.equal(game.roundsLeft(), 4);
     });
   });
 

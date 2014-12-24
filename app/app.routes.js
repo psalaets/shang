@@ -4,7 +4,12 @@
       .when('/', {
         templateUrl: 'title/title.html',
         controller: 'TitleController',
-        controllerAs: 'shang'
+        controllerAs: 'shang',
+        resolve: {
+          gameCount: function(persistence) {
+            return persistence.countGames();
+          }
+        }
       })
       .when('/games/new', {
         templateUrl: 'new-game/new-game.html',
@@ -24,6 +29,21 @@
           currentGame: function($route, persistence) {
             var gameId = $route.current.params.id;
             return persistence.loadGame(gameId);
+          }
+        }
+      })
+      .when('/games', {
+        templateUrl: 'list-games/list-games.html',
+        controller: 'ListGamesController',
+        controllerAs: 'list',
+        resolve: {
+          games: function(persistence) {
+            return persistence.getGames().then(function(games) {
+              // most recent first
+              return games.sort(function(a, b) {
+                return b.startTime - a.startTime;
+              });
+            });
           }
         }
       })
