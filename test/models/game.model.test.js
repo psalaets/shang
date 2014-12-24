@@ -42,6 +42,24 @@ describe('Game', function () {
     });
   });
 
+  describe('#playerNames', function() {
+    it('is empty for games with no players', function() {
+      var game = new Game();
+
+      assert.equal(game.playerNames.length, 0);
+    });
+
+    it('contains names of players in game', function() {
+      var game = new Game();
+
+      game.addPlayer('jane');
+      game.addPlayer('jill');
+      game.addPlayer('jen');
+
+      assert.deepEqual(game.playerNames, ['jane', 'jill', 'jen']);
+    });
+  });
+
   describe('#start()', function() {
     it('sets start time', function() {
       var game = new Game();

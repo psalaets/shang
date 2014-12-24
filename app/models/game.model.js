@@ -131,6 +131,14 @@
       });
     };
 
+    Object.defineProperty(p, 'playerNames', {
+      get: function() {
+        return this.players.map(function(player) {
+          return player.name;
+        });
+      }
+    });
+
     return Game;
   });
 })(angular);
