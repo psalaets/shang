@@ -1,1 +1,22 @@
-list games
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <h1>Games in Progress</h1>
+            <div class="list-group">
+                <div class="list-group-item clearfix" ng-repeat="game in list.games">
+                    <button ng-click="list.resumeGame(game)" class="btn btn-default pull-right">Resume</button>
+                    <h4 class="list-group-item-heading">
+                        {{::game.startTime | date:'short'}}
+                    </h4>
+                    <p class="list-group-item-text">
+                        {{::game.playerNames | sentence}}<br/>
+                        (<ng-pluralize
+                            count="game.roundsLeft()"
+                            when="{'1': '{} round left', 'other': '{} rounds left'}">
+                        </ng-pluralize>)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

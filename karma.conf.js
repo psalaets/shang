@@ -68,6 +68,7 @@ module.exports = function(config) {
 
       'app/list-games/list-games.module.js',
       'app/list-games/list-games.controller.js',
+      'app/list-games/sentence.filter.js',
 
       'app/danger/danger.module.js',
       'app/danger/danger.controller.js',
