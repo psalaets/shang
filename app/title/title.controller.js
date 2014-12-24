@@ -6,5 +6,9 @@
     this.newGame = function() {
       navigation.goToGameSetup();
     };
+
+    this.resume = function() {
+      navigation.goToGamesList();
+    };
   }
 })(angular);
