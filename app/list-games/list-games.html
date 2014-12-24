@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2">
             <h1>Games in Progress</h1>
-            <div class="list-group">
+            <div ng-if="list.games.length" class="list-group">
                 <div class="list-group-item clearfix" ng-repeat="game in list.games">
                     <button ng-click="list.resumeGame(game)" class="btn btn-default pull-right">Resume</button>
                     <h4 class="list-group-item-heading">
@@ -16,6 +16,10 @@
                         </ng-pluralize>)
                     </p>
                 </div>
+            </div>
+            <div ng-if="!list.games.length" class="well">
+                <p>There are no unfinished games.</p>
+                <button ng-click="list.newGame()" class="btn btn-success">Start New Game</button>
             </div>
         </div>
     </div>

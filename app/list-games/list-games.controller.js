@@ -7,5 +7,9 @@
     this.resumeGame = function(game) {
       navigation.goToGame(game.id);
     };
+
+    this.newGame = function() {
+      navigation.goToGameSetup();
+    };
   }
 })(angular);
