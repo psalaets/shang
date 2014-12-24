@@ -72,7 +72,7 @@
 
         return $localForage.iterate(function(value, key) {
           if (isGameKey(key)) {
-            games.push(value);
+            games.push(Game.fromData(value));
           }
         }).then(function() {
           return games;
