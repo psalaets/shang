@@ -138,9 +138,7 @@
     };
 
     p.isDone = function() {
-      return this.rounds.every(function(round) {
-        return round.completed;
-      });
+      return this.roundsLeft() == 0;
     };
 
     Object.defineProperty(p, 'playerNames', {
