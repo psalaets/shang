@@ -125,6 +125,18 @@
       return null;
     }
 
+    p.roundsLeft = function() {
+      var count = 0;
+
+      this.rounds.forEach(function(round) {
+        if (!round.completed) {
+          count += 1;
+        }
+      });
+
+      return count;
+    };
+
     p.isDone = function() {
       return this.rounds.every(function(round) {
         return round.completed;

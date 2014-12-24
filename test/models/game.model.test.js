@@ -200,6 +200,28 @@ describe('Game', function () {
     });
   });
 
+  describe('#roundsLeft()', function() {
+    it('is 7 for a newly started game', function() {
+      var game = new Game();
+      game.addPlayer('amber');
+      game.start();
+
+      assert.equal(game.roundsLeft(), 7);
+    });
+
+    it('tells how many rounds are not completed', function() {
+      var game = new Game();
+      game.addPlayer('amber');
+      game.start();
+
+      game.nextRound(); // mark round 1 done
+      game.nextRound(); // mark round 2 done
+      game.nextRound(); // mark round 3 done
+
+      assert.equal(game.roundsLeft(), 4);
+    });
+  });
+
   describe('.fromData()', function () {
     it('creates game instance from js object', function() {
       var startTimeString = '2014-12-09T07:20:11Z';
