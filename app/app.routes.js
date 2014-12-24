@@ -4,7 +4,12 @@
       .when('/', {
         templateUrl: 'title/title.html',
         controller: 'TitleController',
-        controllerAs: 'shang'
+        controllerAs: 'shang',
+        resolve: {
+          gameCount: function(persistence) {
+            return persistence.countGames();
+          }
+        }
       })
       .when('/games/new', {
         templateUrl: 'new-game/new-game.html',

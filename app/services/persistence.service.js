@@ -67,6 +67,11 @@
           return $localForage.removeItem('nextGameId');
         });
       },
+      countGames: function() {
+        return this.getGames().then(function(games) {
+          return games.length;
+        });
+      },
       getGames: function() {
         var games = [];
 

@@ -2,7 +2,9 @@
   angular.module('app.title')
     .controller('TitleController', TitleController);
 
-  function TitleController(navigation) {
+  function TitleController(gameCount, navigation) {
+    this.gameCount = gameCount;
+
     this.newGame = function() {
       navigation.goToGameSetup();
     };
