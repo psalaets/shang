@@ -26,8 +26,10 @@
           persistence.saveGame(this.game);
         }.bind(this));
 
-        this.gameOver = function() {
-          navigation.goToTitle();
+        this.doneWithGame = function() {
+          persistence.deleteGame(this.game.id).then(function() {
+            navigation.goToTitle();
+          });
         };
       }
     };
