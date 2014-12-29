@@ -4,13 +4,13 @@ describe('new game controller', function () {
   var controller, scope;
 
   beforeEach(module('app'));
-  beforeEach(inject(function($controller, $rootScope, persistence, navigation, Game, rules) {
+  beforeEach(inject(function($controller, $rootScope, persistence, gameLifeCycle, Game, rules) {
     scope = $rootScope.$new();
     controller = $controller('NewGameController as setup', {
       $scope: scope,
       availablePlayers: [],
       persistence: persistence,
-      navigation: navigation,
+      gameLifeCycle: gameLifeCycle,
       Game: Game,
       rules: rules
     });
@@ -132,29 +132,12 @@ describe('new game controller', function () {
   });
 
   describe('beginGame()', function () {
-    var navigation, persistence, $rootScope;
-    var gameId = 10;
+    var gameLifeCycle, persistence, $rootScope;
 
-    beforeEach(inject(function(_navigation_, _persistence_, $q, _$rootScope_) {
-      navigation = _navigation_;
+    beforeEach(inject(function(_gameLifeCycle_, _persistence_, $q, _$rootScope_) {
+      gameLifeCycle = _gameLifeCycle_;
       persistence = _persistence_;
       $rootScope = _$rootScope_;
-
-      var savedGame;
-      spyOn(persistence, 'saveGame').and.callFake(function(game) {
-        savedGame = game;
-        game.id = gameId;
-
-        return $q(function(resolve, reject) {
-          resolve(game);
-        });
-      });
-
-      spyOn(persistence, 'loadGame').and.callFake(function(id) {
-        return $q(function(resolve, reject) {
-          resolve(savedGame);
-        });
-      });
 
       spyOn(persistence, 'setPlayers').and.callFake(function(players) {
         return $q(function(resolve, reject) {
@@ -162,28 +145,21 @@ describe('new game controller', function () {
         });
       });
 
-      spyOn(navigation, 'goToGame');
+      spyOn(gameLifeCycle, 'start');
     }));
 
-    it('starts a new game with given players as current game', function(done) {
+    it('starts a new game with given players', function(done) {
       controller.selectPlayer('jill');
       controller.selectPlayer('joe');
       controller.selectPlayer('jen');
 
       controller.beginGame()
-        .then(loadFakeGame)
-        .then(assertGameState)
+        .then(assertGameStarted)
         .finally(done);
 
-      function loadFakeGame() {
-        return persistence.loadGame('doesnt matter');
-      }
-
-      function assertGameState(game) {
-        assert.ok(game.startTime);
-        assert.equal(game.players[0].name, 'jill');
-        assert.equal(game.players[1].name, 'joe');
-        assert.equal(game.players[2].name, 'jen');
+      function assertGameStarted() {
+        // TODO matcher that verifies players have been added to game
+        expect(gameLifeCycle.start).toHaveBeenCalled();
       }
 
       // must call this to make $q promise chains go
@@ -201,24 +177,6 @@ describe('new game controller', function () {
 
       function assertPlayersWereSaved(players) {
         expect(persistence.setPlayers).toHaveBeenCalledWith(['tim', 'katie', 'bob']);
-      }
-
-      // must call this to make $q promise chains go
-      $rootScope.$apply();
-    });
-
-    it('navigates to game', function(done) {
-      controller.selectPlayer('jill');
-      controller.selectPlayer('joe');
-      controller.selectPlayer('jen');
-
-      controller.beginGame()
-        .then(assertNavigation)
-        .finally(done);
-
-      function assertNavigation() {
-        // this should be jasmine's expect and not chai's
-        expect(navigation.goToGame).toHaveBeenCalledWith(gameId);
       }
 
       // must call this to make $q promise chains go

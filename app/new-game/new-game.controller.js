@@ -2,7 +2,7 @@
   angular.module('app.new-game')
     .controller('NewGameController', NewGameController);
 
-  function NewGameController(availablePlayers, rules, persistence, navigation, Game) {
+  function NewGameController(availablePlayers, rules, persistence, gameLifeCycle, Game) {
     this.availablePlayers = availablePlayers;
     this.selectedPlayers = [];
     this.enteredName = '';
@@ -60,22 +60,14 @@
       var game = new Game();
       this.selectedPlayers.forEach(game.addPlayer, game);
 
-      game.start();
+      return save(this.availablePlayers).then(startGame);
 
-      return saveAvailablePlayersList(this.availablePlayers)
-        .then(saveGame)
-        .then(goToGame);
-
-      function saveAvailablePlayersList(availablePlayers) {
+      function save(availablePlayers) {
         return persistence.setPlayers(availablePlayers);
-      };
-
-      function saveGame() {
-        return persistence.saveGame(game);
       }
 
-      function goToGame() {
-        navigation.goToGame(game.id);
+      function startGame() {
+        gameLifeCycle.start(game);
       }
     };
   }
