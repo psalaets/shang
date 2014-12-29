@@ -10,7 +10,7 @@
       },
       controllerAs: 'vm',
       bindToController: true,
-      controller: function($scope, persistence, navigation, $interval) {
+      controller: function($scope, gameLifeCycle, $interval) {
         this.minutesElapsed = 0;
 
         var tickPromise = $interval(function() {
@@ -22,14 +22,11 @@
         });
 
         $scope.$on('round-finished', function() {
-          this.game.nextRound();
-          persistence.saveGame(this.game);
+          gameLifeCycle.roundFinished(this.game);
         }.bind(this));
 
         this.doneWithGame = function() {
-          persistence.deleteGame(this.game.id).then(function() {
-            navigation.goToTitle();
-          });
+          gameLifeCycle.postGame(this.game);
         };
       }
     };

@@ -13,10 +13,10 @@
       },
       roundFinished: function(game) {
         game.nextRound();
-        persistence.saveGame(game);
+        return persistence.saveGame(game);
       },
       postGame: function(game) {
-        persistence.deleteGame(game.id).then(function() {
+        return persistence.deleteGame(game.id).then(function() {
           navigation.goToTitle();
         });
       }
