@@ -8,7 +8,8 @@ describe('title controller', function () {
     scope = $rootScope.$new();
     controller = $controller('TitleController as shang', {
       $scope: scope,
-      navigation: _navigation_
+      navigation: _navigation_,
+      gameCount: 2
     });
   }));
 
