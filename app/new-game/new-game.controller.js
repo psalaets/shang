@@ -67,7 +67,7 @@
       }
 
       function startGame() {
-        gameLifeCycle.start(game);
+        return gameLifeCycle.start(game);
       }
     };
   }

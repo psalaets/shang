@@ -6,8 +6,9 @@
       start: function(game) {
         game.start();
 
-        persistence.saveGame(game).then(function(game) {
+        return persistence.saveGame(game).then(function(game) {
           navigation.goToGame(game.id);
+          return game;
         });
       },
       roundFinished: function(game) {
