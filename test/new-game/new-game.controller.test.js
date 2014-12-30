@@ -158,8 +158,9 @@ describe('new game controller', function () {
         .finally(done);
 
       function assertGameStarted() {
-        // TODO matcher that verifies players have been added to game
-        expect(gameLifeCycle.start).toHaveBeenCalled();
+        expect(gameLifeCycle.start).toHaveBeenCalledWith(jasmine.objectContaining({
+          playerNames: ['jill', 'joe', 'jen']
+        }));
       }
 
       // must call this to make $q promise chains go
