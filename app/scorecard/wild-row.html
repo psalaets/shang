@@ -1,14 +1,14 @@
 <td><strong>2 &#x2663;</strong></td>
 <td ng-repeat="player in vm.players">
     <div ng-if="vm.showButtons()" class="btn-group">
-      <button type="button" ng-click="player.addWild()" class="btn btn-default">
-          <span class="glyphicon glyphicon-plus"></span>
+      <button type="button" ng-click="player.removeWild()" class="btn btn-default">
+          <span class="glyphicon glyphicon-minus"></span>
       </button>
       <button type="button" class="btn btn-default">
           {{player.wilds}}
       </button>
-      <button type="button" ng-click="player.removeWild()" class="btn btn-default">
-          <span class="glyphicon glyphicon-minus"></span>
+      <button type="button" ng-click="player.addWild()" class="btn btn-default">
+          <span class="glyphicon glyphicon-plus"></span>
       </button>
     </div>
     <div ng-if="!vm.showButtons()">
