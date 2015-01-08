@@ -26,6 +26,8 @@
 
         /** Begin stuff for actual-score-popover.html **/
 
+        this.rawScoreInputId = 'rawScore_' + this.roundScore.player;
+
         this.popoverPosition = function() {
           var middle = (this.round.scores.length - 1) / 2;
           if (index < middle) {
