@@ -7,17 +7,6 @@
                     {{::player}}
                     <span ng-show="setup.isSelected(player)" class="pull-right glyphicon glyphicon-ok"></span>
                 </div>
-
-                <div ng-if="!setup.canBeginGame()" class="alert alert-danger">
-                    <strong>Add or select more players</strong>
-                    <p>Need at least {{::setup.minimumPlayersToStart}} selected to begin game.</p>
-                </div>
-                <div ng-if="setup.canBeginGame()">
-                    <button ng-click="setup.beginGame()" class="btn btn-success btn-lg btn-block">
-                        Begin Game<br/>
-                        <small>({{setup.selectedPlayers.length}} players, {{setup.decksNeeded}} decks)</small>
-                    </button>
-                </div>
             </div>
             <div ng-if="!setup.availablePlayers.length">
                 <div class="alert alert-info">
@@ -35,6 +24,19 @@
                         <input class="btn btn-default" type="submit" value="Add"></input>
                     </span>
                 </form>
+            </div>
+
+            <div class="game-launcher" ng-if="setup.availablePlayers.length">
+                <div ng-if="!setup.canBeginGame()" class="alert alert-danger">
+                    <strong>Add or select more players</strong>
+                    <p>Need at least {{::setup.minimumPlayersToStart}} selected to begin game.</p>
+                </div>
+                <div ng-if="setup.canBeginGame()">
+                    <button ng-click="setup.beginGame()" class="btn btn-success btn-lg btn-block">
+                        Begin Game<br/>
+                        <small>({{setup.selectedPlayers.length}} players, {{setup.decksNeeded}} decks)</small>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
