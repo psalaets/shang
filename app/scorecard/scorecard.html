@@ -4,7 +4,7 @@
             <strong>Started:</strong> {{::vm.game.startTime | date:'short'}}
         </div>
         <div class="col-xs-6">
-            <strong>Session Time:</strong> {{vm.minutesElapsed | duration}}
+            <strong>Game Length:</strong> {{vm.game.startTime | duration:vm.currentTime}}
         </div>
     </div>
     <div class="row">

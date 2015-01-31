@@ -11,10 +11,10 @@
       controllerAs: 'vm',
       bindToController: true,
       controller: function($scope, gameLifeCycle, $interval) {
-        this.minutesElapsed = 0;
+        this.currentTime = new Date();
 
         var tickPromise = $interval(function() {
-          this.minutesElapsed += 1;
+          this.currentTime = new Date();
         }.bind(this), 60 * 1000);
 
         $scope.$on('$destroy', function() {
