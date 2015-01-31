@@ -2,8 +2,11 @@
   angular.module('app.scorecard').filter('duration', createDurationFilter);
 
   function createDurationFilter() {
-    return function(rawMinutes) {
-      rawMinutes = rawMinutes || 0;
+    return function(fromDate, toDate) {
+      if (!fromDate || !toDate) return null;
+
+      var durationMillis = toDate - fromDate;
+      var rawMinutes = Math.floor(durationMillis / (1000 * 60));
 
       var hours = Math.floor(rawMinutes / 60);
       var minutes = rawMinutes % 60;
