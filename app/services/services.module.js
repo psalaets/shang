@@ -3,7 +3,7 @@ angular.module('app.services', [
   // offline storage
   'LocalForageModule'
 ]).config(function($localForageProvider) {
-  // namespace the underlying localforage instance
+  // set up a namespace for the underlying localforage instance
   $localForageProvider.config({
     name: 'Shanghai Rummy'
   });
