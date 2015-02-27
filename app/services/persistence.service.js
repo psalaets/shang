@@ -1,32 +1,6 @@
 ;(function(angular) {
   angular.module('app.services').factory('persistence', function($localForage, $q, Game) {
 
-    function nextGameId() {
-      return $localForage.getItem('nextGameId').then(function(id) {
-        id = id || 0;
-        return $localForage.setItem('nextGameId', id + 1);
-      });
-    }
-
-    // convert game id to persistence key
-    function key(gameId) {
-      return 'game-' + gameId;
-    }
-
-    function isGameKey(key) {
-      return /game-/.test(key);
-    }
-
-    function ensurePlayerListExists() {
-      return $localForage.getItem('players').then(function(players) {
-        if (players) {
-          return players;
-        } else {
-          return $localForage.setItem('players', []);
-        }
-      });
-    }
-
     return {
       saveGame: function(game) {
         function save(game) {
@@ -95,5 +69,31 @@
         return $localForage.removeItem('players');
       }
     };
+
+    function nextGameId() {
+      return $localForage.getItem('nextGameId').then(function(id) {
+        id = id || 0;
+        return $localForage.setItem('nextGameId', id + 1);
+      });
+    }
+
+    // convert game id to persistence key
+    function key(gameId) {
+      return 'game-' + gameId;
+    }
+
+    function isGameKey(key) {
+      return /game-/.test(key);
+    }
+
+    function ensurePlayerListExists() {
+      return $localForage.getItem('players').then(function(players) {
+        if (players) {
+          return players;
+        } else {
+          return $localForage.setItem('players', []);
+        }
+      });
+    }
   });
 })(angular);
