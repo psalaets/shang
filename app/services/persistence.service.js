@@ -89,7 +89,7 @@
         });
       },
       deletePlayers: function() {
-        return migarte().then(function() {
+        return migrateData().then(function() {
           return $localForage.removeItem('players');
         });
       }
