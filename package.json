@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "karma": "./node_modules/karma/bin/karma start"
+    "karma": "karma start"
   },
   "author": "",
   "license": "MIT",
