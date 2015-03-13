@@ -18,7 +18,8 @@
     "localforage": "1.2.0",
     "angular-localForage": "1.2.2",
     "fastclick": "1.0.3",
-    "angular-strap": "2.1.4"
+    "angular-strap": "2.1.4",
+    "angular-localforage-migrations": "2.1.0"
   },
   "devDependencies": {
     "chai": "1.10.0",

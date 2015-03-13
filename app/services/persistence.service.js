@@ -1,17 +1,8 @@
 ;(function(angular) {
-  angular.module('app.services').factory('persistence', function($localForage, $q, Game) {
-
-    // old namespace is the angular-localforage default name and storeName
-    // https://github.com/ocombe/angular-localForage#configure-the-provider-
-    var oldNamespace = $localForage.createInstance({
-      name: 'lf',
-      storeName: 'keyvaluepairs'
-    });
-
-    var migrateFromOldNamespace = runMigration();
+  angular.module('app.services').factory('persistence', function($localForage, $q, Game, migrations) {
 
     function migrateData() {
-      return migrateFromOldNamespace;
+      return migrations.migrate();
     }
 
     return {
@@ -94,28 +85,6 @@
         });
       }
     };
-
-    function runMigration() {
-      // each of these is a promise that does one migration
-      var migrationPromises = [];
-
-      return oldNamespace.iterate(function(value, key) {
-        // prepare to migrate old data
-        migrationPromises.push($localForage.setItem(key, value));
-      }).then(function() {
-        //console.log('migrating ' + migrationPromises.length + ' things')
-
-        // if anything, migrate it
-        if (migrationPromises.length > 0) {
-          return $q.all(migrationPromises).then(function() {
-            // this is best we can do through LF api for cleaning up old namespace
-            return oldNamespace.clear();
-          });
-        }
-      }).then(null, function(error) {
-        console.log('migration failed: ' + error);
-      });
-    }
 
     function nextGameId() {
       return migrateData().then(function() {
