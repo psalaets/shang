@@ -29,6 +29,7 @@ module.exports = function(config) {
 
       'app/bower_components/localforage/dist/localforage.js',
       'app/bower_components/angular-localForage/dist/angular-localForage.js',
+      'app/bower_components/angular-localforage-migrations/index.js',
 
       // our app code
       'app/app.module.js',
