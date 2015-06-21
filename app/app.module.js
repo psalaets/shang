@@ -16,4 +16,6 @@ angular.module('app', [
 ]).config(function(config, $compileProvider) {
   var enabled = 'debugInfoEnabled' in config ? config.debugInfoEnabled : true;
   $compileProvider.debugInfoEnabled(enabled);
+
+  console.log('setting $compileProvider.debugInfoEnabled to ' + enabled)
 });
