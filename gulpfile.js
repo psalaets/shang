@@ -10,12 +10,14 @@ var gulp                 = require('gulp'),
     inject               = require('gulp-inject'),
     minifyCss            = require('gulp-minify-css'),
     minifyHtml           = require('gulp-minify-html'),
+    ngConfig             = require('gulp-ng-config'),
 
     addStream            = require('add-stream'),
     browserSync          = require('browser-sync'),
     del                  = require('del'),
     streamSplicer        = require('stream-splicer'),
-    karma                = require('karma').server;
+    karma                = require('karma').server
+    b2v                  = require('buffer-to-vinyl');
 
 gulp.task('gh-pages', ['build'], function() {
   console.log('Copying files to project root:')
@@ -68,11 +70,26 @@ gulp.task('prep-app.js', ['clean'], function() {
     .pipe(filter('app.js'))
     // tack inlined templates onto app.js
     .pipe(addStream.obj(inlineTemplates()))
+    // tack on generated module with angular constants
+    .pipe(addStream.obj(makeAngularConfig()))
     .pipe(concat('app.js'))
     // make our angular code minifiable
     .pipe(ngAnnotate())
     .pipe(minifyRevAndWrite());
 });
+
+function makeAngularConfig() {
+  var json = JSON.stringify({
+    config: {
+      debugInfoEnabled: false
+    }
+  });
+
+  return b2v.stream(new Buffer(json), 'config.js')
+    .pipe(ngConfig('app.config', {
+      createModule: false
+    }));
+}
 
 function inlineTemplates() {
   var justTemplates = filter(function(vinylFile) {
