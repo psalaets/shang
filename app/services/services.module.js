@@ -12,7 +12,7 @@ angular.module('app.services', [
   });
 })
 .config(function(migrationsProvider) {
-  migrationsProvider.setInternalNamespace('shanghai rummy')
+  migrationsProvider.setInternalNamespace('shanghai rummy');
 
   migrationsProvider.add({
     id: 1,
